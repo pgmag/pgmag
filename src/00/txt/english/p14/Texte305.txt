@@ -1,0 +1,1 @@
+Check out the wikiThe official wiki of the PostgreSQL project (http:/wiki.postgresql.org) has a very nice article titled "Tuning Your PostgreSQL Server". You'll find there most answers to  your performance questions.

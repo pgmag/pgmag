@@ -1,0 +1,1 @@
+PostgreSQL MagazineNews and stories from the Postgres Community  

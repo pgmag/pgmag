@@ -1,0 +1,1 @@
+PostgreSQL Session #2Jun. 23 @ Paris, FranceThe PostgreSQL Sessions are free-as-beer conferences in Paris. Each session is a day consisting of lectures and workshops, organized around a specific theme and a guest. This second edition will be about PostGIS.http://www.postgresql-sessions.org/en/

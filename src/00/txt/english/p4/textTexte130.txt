@@ -1,0 +1,1 @@
+PGBR 2011Nov. 3-4 @ São Paulo, BrazilPGBR  (formerly known as PGCon Brazil) is the biggest event on PostgreSQL in the Americas: in 2009 and 2008, the event brought more than 300 IT professionals and, in 2007, more than 200. In 2011, three rooms will be concurrent with tutorials, lectures and high level talks.http://pgbr.postgresql.org.br/

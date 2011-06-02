@@ -1,0 +1,1 @@
+Linux is one of the most popular server operating systems for PostgreSQL.  One reason for that is that it generally gives good performance.  But there are a few choices and optimizations to take care of if you want to get the best performance it's capable of.

@@ -1,0 +1,1 @@
+A true pioneer. Since 1996, Bruce Momjian has been an active member of the PostgreSQL Global Development Group. His experience gives him a unique standpoint inside the Postgres community, so we've decided to ask him about the past, present and future of the most advanced open source database.

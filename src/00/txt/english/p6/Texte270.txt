@@ -1,0 +1,1 @@
+Dumbo 0.50, a new terminal clientDumbo is a new "fullscreen" pgAdmin-style editor for the console.  It is written in python with the urwid package, and runs on Linux. https://bitbucket.org/mixmastamyk/dumbo/

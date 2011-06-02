@@ -1,0 +1,1 @@
+Hubert "Depesz" Lubaczewski is a Database Architect at OmniTI. His blog (http://www.depesz.com/) is dedicated to the new features of the forthcoming version of PostgreSQL.

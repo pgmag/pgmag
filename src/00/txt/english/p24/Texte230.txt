@@ -1,0 +1,1 @@
+pgFouine is a really nice Postgres log analyzer that I have been using. Like pqa it can generate html reports from a Postgres log file which will display slow running queries and most run queries, among other statistics.  

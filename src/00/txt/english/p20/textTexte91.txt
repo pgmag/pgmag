@@ -1,0 +1,1 @@
+Extensions coming in PostgreSQL 9.1

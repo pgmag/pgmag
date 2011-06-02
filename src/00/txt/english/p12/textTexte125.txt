@@ -1,0 +1,1 @@
+PostgreSQL is the most advanced and flexible open source SQL database today. With this power and flexibility comes a problem. How do the PostgreSQL developers tune the default configuration for everyone? Unfortunately the answer is they can't.

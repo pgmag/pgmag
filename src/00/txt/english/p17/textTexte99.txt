@@ -1,0 +1,1 @@
+Greg Smith is the principal consultant of 2ndQuadrant US and the author of "PostgreSQL 9.0 High Performance":  http://www.2ndquadrant.com/books  His blog at http://blog.2ndquadrant.com regularly covers Linux and PostgreSQL tuning strategies.

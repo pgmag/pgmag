@@ -1,0 +1,1 @@
+PL/Proxy 2.2 is out PL/Proxy is a database partitioning system implemented as procedural language. The new version includes a new TARGET statement to specify different functions to call on the remote side.http://pgfoundry.org/projects/plproxy/

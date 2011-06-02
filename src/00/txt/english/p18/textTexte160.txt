@@ -1,0 +1,1 @@
+In 2010 the CNAF, one of the biggest parts of the French Social Security System, moved its core business applications to PostgreSQL. This use case is quite a success story, as it shows how PostgreSQL is perfectly fitted for big administrations, high workloads and large scale databases.

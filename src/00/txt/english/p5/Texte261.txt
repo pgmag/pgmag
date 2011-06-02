@@ -1,0 +1,1 @@
+For more information on local and international PostgreSQL user conferences, check out the wiki !

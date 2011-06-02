@@ -1,0 +1,1 @@
+China PostgreSQL Conference 2011Jul. 16-17 @ Guangzhou, ChinaThe Chinese PostgreSQL User Group (CPUG) is organizing a two day conference in July. Speakers include David Fetter and Tatsuo Ishii, among others.For information and registration, contact CPUG2011@gmail.com

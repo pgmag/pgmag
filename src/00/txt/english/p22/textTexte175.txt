@@ -1,0 +1,1 @@
+The big new topic in databases today is the use of NoSQL implementations such as MongoDB, Cassandra and Couchbase. 

@@ -1,0 +1,1 @@
+PostgreSQL at CNAF :1 billion SQL queries per day

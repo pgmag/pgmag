@@ -1,0 +1,1 @@
+Postgres OpenSep. 2011 @ Chicago, USAA summit and conference about the business of PostgreSQL in North America, this new conference welcomes users, vendors, and investors in PostgreSQL database technology.http://postgresopen.org

@@ -1,0 +1,1 @@
+Google Summer of Code 2011The PostgreSQL project has been accepted into the Google Summer of Code 2011. Students submitted proposals between March 28 and April 8. Development work will run from May 23 through August 15.http://wiki.postgresql.org/wiki/GSoC_2011

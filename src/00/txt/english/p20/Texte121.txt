@@ -1,0 +1,1 @@
+The forthcoming version of PostgreSQL will bring us a shipload of exciting new features. Among them Extensions are a key improvment that will make it much easier for software vendors to supply additional functionality for PostgreSQL. 

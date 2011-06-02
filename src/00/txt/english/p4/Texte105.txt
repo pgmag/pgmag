@@ -1,0 +1,1 @@
+PGCon 2011May 17-18 @ Ottawa, CanadaPGCon is the annual international conference for developers and users of PostgreSQL. PGCon is the place to meet, discuss, build relationships, learn valuable insights, and generally chat about the work you are doing with PostgreSQL.http://www.pgcon.org/2011/
