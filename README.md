@@ -1,4 +1,4 @@
-[PostgreSQL Magazine]
+# pgmag / PostgreSQL Magazine
 
 **This site is the home of the PostgreSQL Magazine project**
 
