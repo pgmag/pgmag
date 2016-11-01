@@ -1,0 +1,34 @@
+====== Step 3 : Content Editing ======
+
+Please check the [[page_layout]] to see the entire table of content
+
+^ Article ^ page # ^ Char() ^ editor ^ state ^
+| [[Cover]] | 0 |  | damien |   TO DO |
+| [[Credits]] | 1 | 1500 | damien |   TO DO |
+| [[Editorial]] | 1 | 1500 | damien |  TO DO  |
+| [[TOC]] | 2 | 1500 | damien |    TO DO |
+| [[News]]  | 3-4  | |  | TO DO   |
+| [[Events]]  | 5  |  |  |  TO DO |
+| [[Q & A]]   | 6    | | |  TO DO |
+| [[novice]] | 7  |  | damien  |   |
+| [[book]]  | 8  | 3000 | damien  |  In Progress  |
+| [[Interview]]  | 9-12 | |  | |
+| [[what's new in 9.3]]  | 13 - 14 | | |
+| [[NoSQL]] | 15-16 | | | |
+| [[migration1]] | 17 | | | |
+| [[migration2]] | 18 | | | |
+| [[PostGIS intro]] | 19  | |  | |
+| [[PostGIS 2.1]] | 20  | |  | |
+| [[pgRouting]]  | 21-22  | |  | |
+|       FIXME        | 23-24  ||||
+| [[Happy User]] | 25-26  ||||  
+| [[Opinion]] | 27-28  ||||   
+| [[Waiting for 9.4 A]] | 29  ||||  
+| [[Waiting for 9.4 B]] | 30  |||| 
+| [[Tip'n Tricks 1]] | 31  |||| 
+| [[Tip'n Tricks 1]] | 32  |||| 
+| [[Tip'n Tricks 1]] | 33  |||| 
+| [[Next]] | 34 | 2000 | damien | |
+| [[4th Cover]] | 0 |  | damien | |
+
+Editors should read the [[/wiki/content editor guidelines]] before starting their work.7

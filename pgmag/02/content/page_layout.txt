@@ -1,0 +1,37 @@
+====== Step 2 : Page Layout ======
+
+  - Editorial
+  - Table of Content
+  - upcoming events
+  - From our readers
+  - Announcements
+  - Announcements
+  - Novice : Five Interesting Things You Can Do with PostgreSQL[OK]
+  - Book : PostGIS in Action : http://blog.geomusings.com/2010/04/21/a-look-at-postgis-in-action/
+  - Interview : Paul Ramsey
+  - Interview 
+  - Interview
+  - Interview
+  - what's new in 9.3
+  - what's new in 9.3
+  - NoSQL https://postgres.heroku.com/blog/past/2013/6/5/javascript_in_your_postgres/
+  - NoSQL : idem
+  - Migrating : http://ora2pg-samrat.blogspot.fr/
+  - Migrating : http://www.commandprompt.com/blogs/alexey_klyukin/2012/03/
+  - PostGIS : intro
+  - PostGIS : PostGIS 2.1 
+  - PostGIS : pgRouting :   http://anitagraser.com/2011/02/07/a-beginners-guide-to-pgrouting/
+  - PostGIS : pgRouting : http://www.bostongis.com/PrinterFriendly.aspx?content_name=pgrouting_osm2po_1
+  - PostGIS
+  - PostGIS
+  - Happy User
+  - Happy User
+  - Opinion  : http://petereisentraut.blogspot.fr/2013/05/moving-to-c.html
+  - Opinion  : idem
+  - Waiting for 9.4 : http://www.depesz.com/2013/07/23/waiting-for-9-4-implement-the-filter-clause-for-aggregate-function-calls/
+  - Waiting for 9.4 : http://michael.otacoo.com/postgresql-2/postgres-9-4-feature-highlight-refresh-concurrently-a-materialized-view/
+  - Tip'n Tricks  : http://postgresql-india.blogspot.in/2011/03/what-is-my-index-creation-doing.html
+  - Tip'n Tricks : http://thombrown.blogspot.fr/2012/04/deprecated-features-in-postgresql-past.html
+  - Tip'n Tricks  : http://frosty-postgres.blogspot.fr/2012/04/using-rownumber-window-function-to.html
+  - How to Contribute
+  - Last page : Empty

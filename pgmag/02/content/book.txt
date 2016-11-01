@@ -1,0 +1,49 @@
+''CATEGORY'' : Books
+
+''TITLE'' : A Look at "PostGIS in Action"
+
+''HEADER'' : FIXME
+
+''PICTURE'' : http://www.postgresonline.com/images/postgisinaction_cover_big.png
+
+
+''TEXT'' :
+
+"PostGIS in Action" addresses a problem I have run into repeatedly in my consulting work: educating database professionals (DBAs, developers, etc.) on working with spatial data in a manner that they are familiar with. The authors are extremely knowledgeable about database technologies of all kinds and it comes through here.
+
+Since PostGIS extends PostgreSQL, it is impossible to separate the two when discussing good data design and implementation. The “Data Modeling” chapter provides a good discussion of various considerations when working with spatial data (use of complex geometries vs. points, homogeneous vs. heterogeneous geometry columns, etc.) but it also provides one of the best discussions of PostgreSQL table inheritance and partitioning that I have found in one place. Each topic, as throughout the book, is backed up by SQL examples and succinct discussion of the pros and cons of each approach.
+
+The design consideration regarding storing geometry as points versus storing lines or polygons may seem basic to a GIS professional but is a discussion I have had repeatedly throughout my career with database designers who are new to spatial data. Many times, their initial instinct is to store X and Y values in separate columns in a table. This may be a perfectly valid approach for a given data set and how it is to be used but many design considerations come into play. “PostGIS In Action” does a good job of encapsulating those considerations in a manner that is consistent with how most database professionals approach database design.
+
+“PostGIS In Action” continues on to discuss using PostGIS to perform spatial analysis. As always, real SQL samples are used so that a database professional will become comfortable with the use of spatial joins, spatial indexing, the many spatial functions built into PostGIS and many other concepts and techniques. Throughout the book, the authors return to a few examples (the fictional “Hello Town”, San Francisco, Washington, DC) so that each topic is discussed within a problem set with which we become familiar. Additionally, tools such as OGR and QGIS/SPIT are also discussed with examples.
+
+''SUB-HEADER'' :  FIXME
+
+From the solid foundation it provides, the book delves into advanced topics and techniques that will enable the reader to become productive with PostGIS. A programmer can also benefit from the practical SQL examples in the book to write better applications (regardless of language) on top of of PostGIS/PostgreSQL. I also think database professionals working on other platforms (such as Oracle Spatial) could benefit from the better understanding of the unique characteristics of spatial data that can be achieved with this book. They will also begin to see how well PostgreSQL stacks up against commercial RDBMS platforms in terms of capability.
+
+The subject of spatial data, as well as its implementation in PostGIS, is too big for one book to attempt to handle in a “one-stop shop” manner. “PostGIS In Action” wisely avoids trying to do this. It is a good starting point to begin building expertise if you are new to spatial data and, if you are experienced with it, you will probably learn a few things you didn’t know. I recommend checking out “PostGIS In Action” if you are or will be working with PostGIS or spatial data.
+
+----
+
+''BOX 1 TITLE'' :  About the Author
+
+''BOX 1 TEXT'' :  **Bill Dollins** is a programmer with diverse experience in geospatial information systems, relational databases, and application development. He's  Vice President at Zekiah TEchnologies (zekiah.com).  He writes the popular blog, "GeoMusings," covering topics related to GIS and software development and he has contributed code to open-source projects.
+
+''BOX 1 PICTURE'' :  http://www.zekiah.com/sites/default/files/images/bdollins.jpg
+
+ ----
+''BOX 2'' : About the article 
+
+''BOX 2 TEXT'' :
+The original article is available at http://pgmag.org/0208
+
+ ----
+
+''BOX 3'' : About the book 
+
+''BOX 3 TEXT'' :
+> Publisher : Manning
+> Authors : Regina O. Obe and Leo S. Hsu
+> Date : April 2011 (second edition planned for early 2014)
+> Format : Hard copy and Epub (512 pages)
+> ISBN : 9781935182269

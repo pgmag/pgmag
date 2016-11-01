@@ -1,0 +1,38 @@
+====== Issue 2 : Brainstorming ======
+
+
+<note>
+This step is now complete ! Please go to [[page layout]]
+</note>
+
+//What will we talk about in PostgreSQL Magazine #02 ?//
+
+
+Please edit this page and add any idea of article and (if possible) the number of pages of this article.
+
+
+__So far we have :__
+
+^ title ^nb of pages ^ source ^
+| News  | 2  |  PGWN   |
+| Events  | 2  |  PGWN   |
+| PostGIS 2.0 | 6 |  |
+| PostgreSQL 9.2 | 6 | |
+| Interview of a hacker | 4 | Paul Ramsey |
+| | | |
+| Waiting for 9.3 :  |  | |
+| Happy User  | 2 | Heroku ? http://pgconfeu11-service.herokuapp.com/#1 |
+| Using CTE to sort images | 1 |http://frosty-postgres.blogspot.fr/2012/04/using-rownumber-window-function-to.html |
+| Opinion  | 2 | |
+
+Other ideas : 
+
+  * http://thombrown.blogspot.fr/2012/04/deprecated-features-in-postgresql-past.html
+  * http://schemaverse.tumblr.com/post/19355554777/security-barrier-views-without-waiting-for-9-2
+  * http://www.postgresonline.com/journal/archives/249-ODBC-Foreign-Data-wrapper-to-query-SQL-Server-on-Window-Part-2.html
+  * http://www.commandprompt.com/blogs/alexey_klyukin/2012/04/migrating_hierarchical_queries_from_oracle_to_postgresql/
+  * http://postgresql-india.blogspot.in/2011/03/what-is-my-index-creation-doing.html
+  * PostgreSQL performance tuning/optimization
+  * Partitioning / Sharding
+  * http://braintrace.posterous.com/postgresqls-composite-types
+  * why upsert is so difficult : http://www.depesz.com/2012/06/10/why-is-upsert-so-complicated/
