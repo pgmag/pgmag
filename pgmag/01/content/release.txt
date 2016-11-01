@@ -1,0 +1,29 @@
+====== Release ======
+
+===== Publish =====
+
+**Done**
+
+  * pushed on pgmag.org
+  * pushed on issuu.com
+
+**To Do**
+
+  * push on lulu.com
+
+
+===== Annonce =====
+
+**Done**
+
+  * damien : pgsql-advocacy
+  * damien : pgsql-announce
+  * damien : postgresql.org
+  * damien : twitter
+
+**To Do**
+
+  * pgsql-general
+  * pgmag newsletter
+  * Hacker News
+  * reddit

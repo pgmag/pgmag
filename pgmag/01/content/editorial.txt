@@ -1,0 +1,17 @@
+''TITLE'': Editorial
+
+''TEXT'': 
+
+This is it! The first issue of the first non-profit print media created by and for the Postgres community. Time went by since our demo issue last year! Overall we printed 2000+ hard copies (distributed for free in events like PG Con 2011 in Ottawa , FOSDEM 2012 in Brussels). We also know that so far the online PDF version was read by 10000+ visitors. So we took some time to analyze the feedback we received and we learned many things. Many thanks to every one who sent us the feedback.
+
+The great news in all this is that we proved that we can run a print media as an open source community-driven project! We all know that the PostgreSQL community can produce robust source code and quality documentation. But could we use this strong energy to generate something else? Why not a media aimed at the PostgreSQL user base? In less than a year, what was just a theoretical question has become reality. 
+
+In this first issue, we will talk of the wonders of PostgreSQL 9.1 and we'll get a sneak peek at the upcoming 9.2 version. We'll take a look at Mac OSX Lion and we'll ask a bunch of questions of Stephan Kaltenbrunner, one of the sysadmins behind the postgresql.org infrastructure... We really hope you will find ideas and insights in this magazine!
+
+This time, dozens of benevolent contributors made this issue possible: writers, editors, reviewers, etc. Kudos to them! We try to work just like any "regular" open source project: content is edited in wiki, the source files are store in github and we have a contributors' mailing list. If you want to join us, just check out page 34 to see how you can help. 
+
+And finally, I would like to thank our benefactors... Fotolia.com has offered us a free subscription plan to access their stock photo database. We also received funding from  PostgreSQL Europe (PGEU) and Software in the Public Interest (SPI). This funding will allow us to release this issue and the next one.
+
+For the new issue, we plan on sending more free copies to many PostgreSQL conferences and meetings around the world. So if you're organizing a PostgreSQL related event, just send us a message at contat@pgmag.org and we'll try provide you with hard copies of this magazine.
+
+Damien Clochard\\ Editor in Chief

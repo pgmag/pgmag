@@ -1,0 +1,33 @@
+''TITLE'': Synchronous replication
+
+''HEADER'' : Synchronous Replication enables high-availability with consistency across multiple nodes. Synchronous replication supports "2-safe replication" which ensures transactions have been confirmed by a standby server in addition to the master, greatly limiting the possibility of data loss. Only PostgreSQL has transaction-level synchronous replication, allowing users to choose per transaction between response time and data safety.
+
+----
+
+''TEXT'' :
+
+Let's say you have set up a "classic" PostgreSQL Hot Standby cluster with streaming replication. To get synchronous, just change the following option in the master's postgresql.conf:
+
+  synchronous_standby_names = 'newcluster'
+
+This is the application_name from our primary_conninfo from the slave. Just do a pg_ctl reload, and this new parameter will be set. Now any commit on the master will only be reported as committed on the master when the slave has written it on its own journal, and acknowledged it to the master.
+
+One of the really great features of synchronous replication is that it is controllable per session. The parameter synchronous_commit can be set to local in a session, if it does not require this synchronous guarantee, or turned off completely if you want asynchronous commit even on master. If you don't need it in your transaction, just type the command below and you won't pay the penalty.
+   
+  SET synchronous_commit TO local;
+
+
+Of course, Syncrhonous Replication is not the only improvement of this new version. There are many other new replication features for PostgreSQL 9.1! Here's a quick list: 
+
+  * In 9.0, the user used for replication had to be a superuser. It's no longer the case, there is a new 'replication' privilege.
+  * pg_basebackup is a new tool to create a clone of a database, or a backup, using only the streaming replication features. 
+  * The slaves can now ask the master not to vacuum records they still need.
+  * Two new systems views called pg_stat_replication and pg_stat_database_conflicts
+  * Replication can now be easily paused on a slave.
+  * Restore points can now be created.
+
+
+----
+''BOX 1 TITLE'': A word of warning
+
+''BOX 1 TEXT'' : In synchronous mode, transactions are considered committed when they are applied to the slave's journal, not when they are visible on the slave. It means there will still be a delay between the moment a transaction is committed on the master, and the moment it is visible on the slave. This still is synchronous replication because no data will be lost if the master crashes.

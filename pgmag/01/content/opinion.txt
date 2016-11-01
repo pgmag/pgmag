@@ -1,0 +1,55 @@
+''CATEGORY'' : Opinion
+
+''TITLE'' : Money in Open Source, funding PostgreSQL features
+
+''HEADER'' :
+
+Open source is moving fast and flourishing. In most cases, free software projects start with little or no funding at all. Money is not necessary to implement a good idea in an open source environment. However as a project grows and reaches commercial success, it becomes possible to raise funds directly to add new major features.
+
+-----------
+
+''TEXT'' :
+
+Once upon a time, a newbie would come to our community and say, “I want feature X.” The response was generally either, “Why?” or “Where’s your patch?” Over the last couple of years (I would put it at around the release of 8.3), the project has matured and the responses to feature requests are now “How?” instead of “Why?” In other words, “How can we get this done?” versus “Why in the world would we want that?” This is a positive step and has led to many world class-leading features within PostgreSQL over the last few major releases.
+
+
+As with most popular, mature and large open source projects, our project has become primarily driven by commercial interests, and the majority of key contributors to the project have financial incentive. This works well within our ecosystem because we have quite a few different companies that contribute, whether it be 2ndQuadrant, CMD, Credativ, EnterpriseDB, or PgExperts. However, these companies are driven by a need to pay employees, preferably in a manner that allows them to eat more than high-sodium 25 cent noodles. This means that while they may all contribute, they also have different profit centers and their priorities can sway based on customer demands.
+
+
+Paying for feature development is also difficult. Last year, CMD was sponsored by multiple companies to develop the FKLocks (Foreign Key Locks) patch. I can say with certainty that we will lose money on the development of that patch. We underestimated the amount of work it would take to get the job done. The financial loss is our responsibility but when you are trying to balance the investment of reviewing many thousands of lines of code to interpret the best way to modify that code for a new feature and do so in a fashion that does not mean you have written the feature before you get it funded, it makes for a very careful process. That is not to say the development of the patch wasn’t worth it; but it does point to a particular difficulty in getting a company such as CMD to continue feature development. If we lose money on the majority of patches we develop, we have to divert resources from developing features to more profitable ventures such as training or professional services. As I recall, 2ndQuadrant ran into a similar problem when they developed Hot Standby.
+
+----
+
+''SUB-HEADER'' : "The key is to have a multitude of avenues for people and companies to fund the continued development of PostgreSQL."
+
+----
+
+
+There is no single solution to this problem because each entity will have to find what works for them. The key is to have a multitude of avenues for people and companies to fund the continued development of PostgreSQL. At PostgreSQL Conference West this year we were able to fund two small features, one from CMD and one from 2ndQuadrant. Although the CMD feature (URI connection strings) was funded by a single entity (Heroku), 2ndQuadrant’s feature was funded by multiple sponsors from the conference itself. This model works well for well defined, smallish features (<15k) as we can use the conferences as a vehicle to communicate the need. I know that at Postgres Open there were some fund-raising efforts as well.
+
+----
+
+''PICTURE'' : http://fr.fotolia.com/Content/Comp/22408212
+
+----
+One option would be to have a subscription pool. If X number of people give Y amount, the community can employ Z number of engineers full time. One complication with this is that in order for it to work it would have to run through one of the PostgreSQL companies. I know if every CMD customer were willing to commit to 1000.00 per year, we could easily employ (with benefits) 5 engineers full time for only PostgreSQL contribution development. Of course that brings about other problems, such as who decides what features are worked on and what if subscriptions drop off? When companies give money, they want to have a say in how it is spent and just because you write a patch, it doesn’t mean it is going to get committed. When employees are working they want to make sure they have stability.
+
+
+The idea of using the non-profits (PgUS, PgEU, SPI) has come up on occasion but it has a wealth of legal and administrative issues that could burden the corporations and actually hinder development. That is certainly not what we want to have happen. It would be simple enough to offer grants for development, but grants are not tax-free and it would put the tax and administrative burden on the developer, something that most developers (let’s be honest) want nothing to do with and aren’t good at anyway. The non-profits also have to raise the money for development and all of them are operated by people with day jobs (and many have families). Fund-raising takes a lot of time that most people do not have.
+
+
+What does the community think? How could we go about continuing to drive feature development and meet the required financial responsibility to developers? Is this something that even matters any more? Has our community grown past that? One thing that is certain, the amount of money being invested in PostgreSQL is only going to increase. This is easily evidenced by announcements from VMware, or just by reviewing the number of contributions that are commercially sponsored. 
+
+
+
+
+----
+''BOX 1 TITLE'' : About the Author
+
+''BOX 1 TEXT'' :
+
+Joshua Drake (@Linuxpoet) is the founder of Command Prompt, the oldest dedicated PostgreSQL support provider in North America. Since 1997, he's been developing, supporting, deploying and advocating PostgreSQL.
+
+''BOX 1 PICTURE'' : 
+
+https://twimg0-a.akamaihd.net/profile_images/1082200455/32GB_250.jpg

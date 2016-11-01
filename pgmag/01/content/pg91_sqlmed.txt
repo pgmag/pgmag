@@ -1,0 +1,72 @@
+''TITLE'' : SQL/MED
+
+''HEADER'' : SQL/MED (for Management of External Data) is extension to the SQL:2003 standard that provides extensions to SQL that define foreign-data wrappers (FDW) and datalink types to allow SQL to access data stored outside of the RDBMS.
+
+-----------
+
+''TEXT'' :
+
+PostgreSQL 9.1 has already a bunch of FDW available : Oracle, MySQL, SQLlite, anything providing an ODBC driver, LDAP, couchdb, redis, Amazon S3 storage, CSV files, Twitter, Google Search, HTML pages, RSS feeds, etc. There is even an extension that aims to make FDW development easier when developing them in Python, Multicorn : http://multicorn.org/
+
+For an almost complete list, check out the PostgreSQL wiki : http://wiki.postgresql.org/wiki/Foreign_data_wrappers
+
+Here is an example, using the file_fdw extension.
+
+We'll map a CSV file to a table.
+   
+  =# CREATE EXTENSION file_fdw WITH SCHEMA extensions;
+  \dx+ file_fdw
+           Objects in extension "file_fdw"
+                  Object Description                 
+  ----------------------------------------------------
+  foreign-data wrapper file_fdw
+  function extensions.file_fdw_handler()
+  function extensions.file_fdw_validator(text[],oid)
+  
+This next step is optional. It's just to show the 'CREATE FOREIGN DATA WRAPPER' syntax:
+   
+   =# CREATE FOREIGN DATA WRAPPER file_data_wrapper 
+   -# HANDLER extensions.file_fdw_handler;
+   CREATE FOREIGN DATA WRAPPER
+  
+The extension already creates a foreign data wrapper called file_fdw. We'll use it from now on.
+
+----
+SUBHEADER : SQL/MED makes PostgreSQL a powerful tool for enterprise data integration
+----
+
+We need to create a 'server'. As we're only retrieving data from a file, it seems to be overkill, but SQL/MED is also capable of coping with remote databases.
+  
+   =# CREATE SERVER file 
+   -# FOREIGN DATA WRAPPER file_fdw ;
+   CREATE SERVER
+ 
+Now, let's link a statistical_data.csv file to a statistical_data table:
+  
+   =# CREATE FOREIGN TABLE stats (
+   -#   field1 numeric, 
+   -#   field2 numeric
+   -#   ) 
+   -#   server file options (
+   -#     filename '/tmp/data.csv', 
+   -#     format 'csv', 
+   -#     delimiter ';'
+   -#    );
+   CREATE FOREIGN TABLE
+   =# SELECT * from stats ;
+    field1 | field2 
+   --------+--------
+       0.1 |    0.2
+       0.2 |    0.4
+       0.3 |    0.9
+       0.4 |    1.6
+
+For now, foreign tables are SELECT-only but more improvements will be coming in the next major versions.
+
+----
+''BOX 1'' : Why SQL/MED is cool 
+
+''BOX 1 TEXT'' :
+For more details, check out Robert Haas blog post on SQL/MED at :
+http...
+The original article is available at http://pgmag.org/0110

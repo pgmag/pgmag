@@ -1,0 +1,60 @@
+''TITLE'': Writeable Common Table Expressions (wCTE):
+
+''HEADER'':
+This features (also known as wCTE) supports the relational integrity of your data by allowing you to update multiple, cascading, related records in a single statement. By using the results of one query to execute another query, you can update recursively, hierarchically, across foreign keys, or even more creatively. PostgreSQL provides the most complete and flexible implementation of this SQL feature available.
+
+-----
+
+''TEXT'':
+
+Common Table Expressions were introduced in PostgreSQL 8.4 (see the WITH syntax). Now, data modification queries can be put in the WITH part of the query, and the returned data used later.
+
+Let's say we want to archive all records matching %hello% from our test_trgm table:
+  
+  CREATE TABLE old_text_data (text_data text);
+   
+  WITH deleted AS (
+    DELETE FROM test_trgm 
+    WHERE text_data like '%hello%' 
+    RETURNING text_data
+  )
+  INSERT INTO old_text_data SELECT * FROM deleted;
+
+All in one query.
+
+-----
+''SUBHEADER'': wCTE execute complex multi-stage data updates in a single query
+-----
+
+As a more ambitious example, the following query updates a pgbench database, deleting a bunch of erroneous transactions and updating all related teller, branch, and account totals in a single statement:
+  
+  WITH deleted_xtns AS (
+    DELETE FROM pgbench_history
+    WHERE bid = 4 and tid = 9
+    RETURNING *
+  ), 
+  deleted_per_account AS (
+     SELECT aid, sum(delta) as baldiff 
+     FROM deleted_xtns
+     GROUP BY 1
+  ),
+  accounts_rebalanced as (
+     UPDATE pgbench_accounts
+     SET abalance = abalance - baldiff
+     FROM deleted_per_account
+     WHERE deleted_per_account.aid = pgbench_accounts.aid
+     RETURNING deleted_per_account.aid, pgbench_accounts.bid,
+       baldiff
+   ),
+   branch_adjustment as (
+       SELECT bid, SUM(baldiff) as branchdiff
+       FROM accounts_rebalanced
+       GROUP BY bid
+   )
+   UPDATE pgbench_branches
+   SET bbalance = bbalance - branchdiff
+   FROM branch_adjustment
+   WHERE branch_adjustment.bid = pgbench_branches.bid
+   RETURNING branch_adjustment.bid,branchdiff,bbalance;
+
+

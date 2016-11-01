@@ -1,0 +1,34 @@
+====== Content Editor ======
+
+Please check the [[page_layout]] to see the entire table of content
+
+^ Article ^ page # ^ Char() ^ editor ^ state ^
+| [[Cover]] | 0 |  | damien |   not started |
+| [[Credits]] | 1 | 1500 | damien |   in progress |
+| [[Editorial]] | 1 | 1500 | damien |   reviewed |
+| [[TOC]] | 2 | 1500 | damien |   not started |
+| [[News]]  | 3-4  | |  |   |
+| [[Events]]  | 5  |  |  |  ready for review |
+| [[Q & A]]   | 6    | | |  ready for review |
+| [[the key value store everyone ignored]]  | 7-8  | 5000 | damien  | reviewed  |
+| [[Interview]]  | 9-12  | 12000 | damien |reviewed |
+| [[pg91_front]] | 13 | 0 | damien |reviewed |
+| [[pg91_intro]] | 14 | 0 | damien |ready for review |
+| [[pg91_sqlmed]]| 15 | 2000 | damien |ready for review |
+| [[pg91_per_column_collation]] | 16 | 2000 | damien |ready for review |
+| [[pg91_unlogged_tables]] | 17 | 2000 | damien |ready for review |
+| [[pg91_sync_rep]] | 18 | 2000 | damien |ready for review |
+| [[pg91_extensions]] | 19 | 2000 | damien |reviewed |
+| [[pg91_knn_index]] | 20 | 2000 | damien |reviewed |
+| [[pg91_pgxn]] | 21 | 2000 | damien |ready for review |
+| [[pg91_se_postgres]] | 22 | 2000 | damien |ready for review |
+| [[pg91_ssi]] | 23 | 2000 | damien |ready for review |
+| [[pg91_wcte]] | 24 | 2000 | damien |ready for review |
+| [[pg91_and_more]] | 25 | 2000 | damien |ready |
+| [[Elephant and Lion]] | 26-28 | 6000 |  |ready for review   |
+| [[Opinion]]  | 29-30 | 5000 | damien |reviewed|
+| [[Waiting for 9.2]] | 31-33 | 10000 | damien |reviewed |
+| [[Next]] | 34 | 2000 | damien | |
+| [[4th Cover]] | 0 |  | damien |reviewed |
+
+Editors should read the [[/wiki/content editor guidelines]] before starting their work.7

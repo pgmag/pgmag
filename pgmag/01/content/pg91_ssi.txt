@@ -1,0 +1,89 @@
+''TITLE'': Serializable Snapshot Isolation
+
+''HEADER'':
+
+
+This new feature allows users to enforce arbitrarily complex user-defined business rules within the database without blocking, by automatically detecting live race conditions in your SQL transactions at runtime. This feature currently exists only in PostgreSQL.
+
+
+-----
+
+''TEXT'':
+
+With Serializable Snapshot Isolation (SSI), if you can show that your transaction will do the right thing if there are no concurrent transactions, then it will do the right thing in any mix of serializable transactions or else be rolled back with a serialization failure.
+
+Now let's try a "Simple Write Skew" example where two concurrent transactions each determine what they are writing based on reading a data set which overlaps what the other is writing. You can get a state which could not occur if either had run before the other. This is known as write skew, and is the simplest form of serialization anomaly against which SSI protects you.
+
+-----
+''SUBHEADER'': SSI keeps concurrent transactions consistent without blocking, using "true serializability"
+-----
+
+In this case there are rows with a color column containing 'black' or 'white'. Two users concurrently try to make all rows contain matching color values, but their attempts go in opposite directions. One is trying to update all white rows to black and the other is trying to update all black rows to white. If these updates are run serially, all colors will match. If they are run concurrently in REPEATABLE READ mode, the values will be switched, which is not consistent with any serial order of runs. If they are run concurrently in SERIALIZABLE mode, SSI will notice the write skew and roll back one of the transactions.
+
+The example can be set up with these statements:
+
+  session 1	                                   session 2
+  begin;
+  update dots set color = 'black'
+    where color = 'white';
+                                                   begin;
+                                                   update dots set color = 'white'
+                                                   where color = 'black';
+    
+                                                   At this point one transaction or the
+                                                   other is doomed to fail.
+
+                                                   commit;
+                                                
+                                                   First commit wins.
+   
+                                                    select * from dots order by id;
+                                                    id | color
+                                                    ----+-------
+                                                      1 | white
+                                                      2 | white
+                                                      3 | white
+       
+                                                    (3 rows)
+                                                    This one ran as if by itself.
+      
+   commit;
+   ERROR:  could not serialize access
+        due to read/write dependencies
+        among transactions
+   DETAIL:  Cancelled on identification
+         as a pivot, during commit attempt. 
+   HINT:  The transaction might succeed if retried.
+    
+   A serialization failure. We roll back and try again.
+   
+   rollback;
+   
+   begin;
+   update dots set color = 'black'
+     where color = 'white';
+   commit;
+   
+   No concurrent transaction to interfere.
+   
+   select * from dots order by id;
+    id | color
+   ----+-------
+     1 | black
+     2 | black
+     3 | black
+   (3 rows)
+   
+   This transaction ran by itself, after the other.
+
+
+
+----
+''BOX 1 TITLE'':  More examples
+
+''BOX 1 TEXT'':
+
+Check out the SSI wiki page for additional real life examples such as "Intersecting Data", "Overdraft Protection" or "Deposit Report"
+
+http://wiki.postgresql.org/wiki/SSI
+----

@@ -1,0 +1,59 @@
+''TITLE'' : Upcoming Events
+
+''PICTURE'' : http://3.bp.blogspot.com/_9GMDQ4nhw6M/SPl_lIwnm8I/AAAAAAAAAkE/pLo7dNDGwu4/s1600/gruppo.jpg
+
+----
+
+''BOX 1 TITLE'' : PGCon 2012 / May 15-18 / Ottawa, Canada
+
+''BOX 1 TEXT'' : PGCon is an annual conference for users and developers of PostgreSQL. PGCon is the place to meet, discuss, build relationships, learn valuable insights, and generally chat about the work you are doing with PostgreSQL. 
+
+''BOX 1 URL'' : http://www.pgcon.org/2012/
+
+
+----
+
+
+''BOX 2 TITLE'' : PG Day France / June 7 / Lyon, France
+
+''BOX 2 TEXT'' : The major French-speaking PostgreSQL Conference is back this year with some great talks : PostGIS 2.0, fuzzy logic in PostgreSQL, High-Availibility, Benchmarking, Foreign Data Wrappers and more ! 
+
+''BOX 2 URL'' : http://www.pgday.fr
+
+----
+
+''BOX 3 TITLE'' : PgNext 2012 / June 26-29 / Denver, USA
+
+''BOX 3 TEXT'' : PgNext is the new face of pgWest and pgEast conferences. It provides an opportunity for the Postgres community to come together to share and celebrate the most recent advances to the product.
+
+''BOX 3 URL'' : https://www.postgresqlconference.org/
+
+----
+
+
+''BOX 4 TITLE'' : Postgres Open 2012 / September 16-19 / Chicago, USA
+
+''BOX 4 TEXT'' : Postgres Open is a non–profit, community–run conference series in the United States focused on business users, database professionals and developers of PostgreSQL. Postgres Open will promote the business of PostgreSQL as well as its use and development.
+
+''BOX 4 URL'' : http://postgresopen.org
+
+----
+
+
+
+''BOX 5 TITLE'' : PG Conference Europe 2012 / October 23-26 / Prague, Czech Rep.
+
+''BOX 5 TEXT'' :  This year, the major European PostgreSQL conference will take place at the Corinthia hotel in Prague. You can expect three days packed with presentations about PostgreSQL and related technologies, one day of extended trainings, and the usual hallway and social track!
+
+''BOX 5 URL'' : http://2012.pgconf.eu/
+
+----
+
+
+''BOX 6 TITLE'' : 
+
+''BOX 6 TEXT'' :  or more information on local and international PostgreSQL user conferences, check out the wiki !
+
+''BOX 6 URL'' : http://wiki.postgresql.org/wiki/Events
+
+----

@@ -1,0 +1,19 @@
+
+''TITLE'' : PostgreSQL 9.1 is out !
+
+''SUBTITLE'' : 10 awesome new features
+
+Sync Rep, unlogged tables, SQL/MED,
+Extensions, Writable CTE,
+and much much more..
+
+
+
+''TABLE OF CONTENT'' : 
+
+   * NoSQL : The Key Value store everyone ignored
+   * Interview : Stephan Kaltenbrunner
+   * Opinion : Funding PostgreSQL features
+   * Wainting for 9.2 : Cascading Streaming Replication
+   * Tips & tricks : PostgreSQL in Mac OS X Lion
+   * Opinion : Funding PostgreSQL features

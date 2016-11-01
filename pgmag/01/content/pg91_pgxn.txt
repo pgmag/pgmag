@@ -1,0 +1,60 @@
+''TITLE'' : PGXN
+
+''HEADER'':
+
+The PostgreSQL Extension Network (PGXN) is a central distribution system for open-source PostgreSQL extension libraries. It is inspired by the Comprehensive Perl Archive Network (CPAN).
+
+----
+
+''TEXT'':
+
+We've seen that PostgreSQL 9.1 allows developers to create extensions. With PGXN, extensions authors can submit their work together with metadata describing them: the packages and their documentation are indexed and distributed across several servers. The system can be accessed through a web interface or command line clients thanks to a simple API.
+
+A comprehensive PGXN client is being developed. It can be installed with:
+  
+  $ easy_install pgxnclient
+  Searching for pgxnclient
+  ...
+  Best match: pgxnclient 0.2.1
+  Processing pgxnclient-0.2.1-py2.6.egg
+  ...
+  Installed pgxnclient-0.2.1-py2.6.egg
+
+Among other commands, it allows to search for extensions on the website:
+
+  $ pgxn search pair
+  pair 0.1.3
+    ... Usage There are two ways to construct key/value *pairs*: Via the
+    *pair*() function: % SELECT *pair*('foo', 'bar'); *pair* ------------
+    (foo,bar) Or by using the ~> operator: % SELECT 'foo' ~> 'bar';
+    *pair*...
+  
+  semver 0.2.2
+      *pair* │ 0.1.0 │ Key/value *pair* data type Note that "0.35.0b1" is less
+      than "0.35.0", as required by the specification. Use ORDER BY to get
+      more of a feel for semantic version ordering rules: SELECT...
+
+----
+''SUBHEADER'': The new site PGXN.org offers a repository for contributing and downloading extensions.
+----
+
+To build and install them on the system:
+  
+  $ pgxn install pair
+  INFO: best version: pair 0.1.3
+  INFO: saving /tmp/tmpezwyEO/pair-0.1.3.zip
+  INFO: unpacking: /tmp/tmpezwyEO/pair-0.1.3.zip
+  INFO: building extension
+  ...
+  INFO: installing extension
+  [sudo] password for piro: 
+  /bin/mkdir -p '/usr/local/pg91b1/share/postgresql/extension'
+  ...
+
+And to load them as database extensions:
+
+  $ pgxn load -d mydb pair
+  INFO: best version: pair 0.1.3
+  CREATE EXTENSION
+
+What can be easier than this ?

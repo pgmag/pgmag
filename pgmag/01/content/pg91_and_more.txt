@@ -1,0 +1,67 @@
+''TITLE'': .... And so much more !
+
+''HEADER'':  PostgreSQL is the only major SQL database system to have consistent, featureful releases every year. And behind the outstanding new features, there's also smaller changes and additions that can make your life easier and speed up your servers ! Here's a quick list of the tiny nuggets you will find in PostgreSQL 9.1...
+
+-----
+
+''TEXT'':
+
+
+
+-----
+''SUBHEADER'': Performance improvements
+-----
+
+Each major release bring better performace. With PostgreSQL 9.1 :
+
+  * synchronous writes have been optimized to less stress the filesystem.
+  * Inheritance table in queries can now return meaningfully-sorted results, allow optimizations of MIN/MAX for inheritance 
+  * hash algorithms can now be used for full outer joins, and for arrays.
+
+
+-----
+''SUBHEADER'': Easier Administration
+-----
+
+In many ways, PostgreSQL 9.1 will be more comfortable for the DBA. New features include :
+
+  * Auto-tuning of wal_buffers.
+  * Record last reset in database and background writer-level statistics views.
+  * Columns showing the number of vacuum and analyze operations in pg_stat_*_tables views.
+
+-----
+''SUBHEADER'': SQL and PL/PgSQL features
+-----
+
+Developers will also have a bunch a nice surprises, among them :
+
+  * GROUP BY can now guess some missing columns
+  * New values can be added to an existing enum type via ALTER TYPE.
+  * Composite types can be modified through ALTER TYPE ... ADD/DROP/ALTER/RENAME ATTRIBUTE.
+  * ALTER TABLE ... ADD UNIQUE/PRIMARY KEY USING INDEX
+  * ALTER TABLE ... SET DATA TYPE can avoid table rewrites in appropriate cases.
+  * New CREATE TABLE IF NOT EXISTS syntax.
+  * INSTEAD OF in triggers on views.
+  * PL/PgSQL FOREACH IN ARRAY.
+
+
+
+----
+''BOX 1 TITLE'': Check out the wiki
+
+''BOX 1 TEXT'': This article is heavily based on the wiki page 
+called  "What's new in PostgreSQL 9.1 ?".  
+
+http://....
+
+----
+
+----
+''BOX 1 TITLE'': Marc Cousin
+
+''BOX 1 IMAGE'': {{:wiki:01:dscf2009.jpg?linkonly|}}
+
+''BOX 1 TEXT'': Marc Cousin is a PostgreSQL and Oracle DBA since 1999. He is involved in the Postgres community in various ways, providing help on the French-speaking forum or participating to the PG Day France. He works at Dalibo as a Senior DBA.
+
+----
+

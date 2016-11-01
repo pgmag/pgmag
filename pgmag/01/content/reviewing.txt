@@ -1,0 +1,106 @@
+====== Reviewing ======
+
+~~NOTOC~~
+===== Read First =====
+
+If you are reviewing an article for the first time, please take some time to read the [[../reviewer guidelines]] and the [[../style guidelines]]
+
+===== Waiting For Review =====
+
+Each articles should be checked by at least two different reviewers.\\
+Please add "Reviewed by <your name>" when you're done.
+
+
+  * [[events]]
+        * Reviewed by Osvaldo Tulini
+        * Reviewed by Sivakumar
+
+  * [[Q&A]]
+        * Reviewed by Ray O'Donnell
+        * Reviewed by Sivakumar
+
+  * [[news]]
+        * Reviewed by Sivakumar
+
+  * [[next]]
+===== Done =====
+
+
+  * [[Editorial]]
+        * Reviewed by Ray O'Donnell
+        * Reviewed by Osvaldo Tulini
+        * Reviewed by Sivakumar
+
+  * [[pg91_intro]] 
+        * Reviewed by Luca Ferrari
+        * Reviewed by Sivakumar
+
+  * [[pg91_sqlmed]]
+        * Reviewed by Luca Ferrari
+        * Reviewed by Sivakumar
+
+  * [[pg91_per_column_collation]]
+        * Reviewed by Luca Ferrari
+        * Reviewed by Sivakumar
+
+  * [[pg91_unlogged_tables]]
+    * Reviewed by Matt Keranen
+    * Reviewed by Sivakumar
+
+  * [[pg91_sync_rep]]
+    * Reviewed by Jaime Casanova
+    * Reviewed by Sivakumar
+
+  * [[pg91_se_postgres]] 
+       * Reviewed by Osvaldo Tulini
+       * Reviewed by Sivakumar
+
+  * [[pg91_wcte]] 
+       * Reviewed by Osvaldo Tulini
+
+  * [[pg91_and_more]]
+       * Reviewed by Thom Brown
+
+  * [[pg91_extensions]] 
+       * Reviewed by Ray O'Donnell
+       * Reviewed by Osvaldo Tulini
+
+  * [[pg91_knn_index]]
+    * Reviewed by Nicolas Thauvin
+    * Reviewed by Osvaldo Tulini 
+
+
+  * [[pg91_ssi]]
+       * by Ray O'Donnell
+       * Reviewed by Bob Hetrick
+
+  * [[pg91_pgxn]]
+    * Reviewed by Nicolas Thauvin
+    * Reviewed by Bob Hetrick
+
+  * [[Opinion]]
+    * Reviewed by Ray O'Donnell
+    * Reviewed by Sivakumar
+    * Reviewed by Josh Kupershmidt 
+    * Reviewed by Osvaldo Tulini
+
+  * [[Interview]]
+     * Reviewed by Thom Brown
+     * Reviewed by Sivakumar
+     * Reviewed by Jaime Casanova
+     * Reviewed by Osvaldo Tulini
+
+
+  * [[the key value store everyone ignored]]  __''please, which category is this ?''__
+    * Reviewed by Sivakumar
+    * Reviewed by Osvaldo Tulini
+    * Reviewed by Thom Brown (with note about paragraph that needs rewriting)
+
+  * [[waiting for 9.2]]
+    * Reviewed by Thom Brown
+    * Reviewed by Ray O'Donnell
+    * Reviewed by Sivakumar
+    * Reviewed by Osvaldo Tulini
+
+  * [[Elephant and Lion]]
+     * Reviewed by Bob Hetrick

@@ -1,0 +1,296 @@
+====== Last Check ======
+
+Please download the PDF here : http://www.cgemy.com/public/pgmag/issue-01-cedric-beta1.pdf
+
+normal check :
+table of content
+copyrights, authors, credit
+missing URLS
+
+And tell us below 
+
+===== page 1 =====
+we'll ask a bunch of questions of Stephan -> to Stephan
+[Actually, "of" is correct here; "to" is wrong. Maybe just say "...we'll ask Stephan a bunch of questions..." :-) - Ray O'D.]
+
+the source files are store -> storeD
+
+In the red box on the left: "Layout Editor : Cédric..." -> "Layout Editor: Cédric..." (i.e. lose the space before the colon).
+===== page 2 =====
+
+Reviewers :  Add the following names:  Evan Bennett, Michael Brewer, Gregory Youngblood, Magnus Hagander
+
+"Many thanks to every one that send us
+feedback." should read:
+
+"Many thanks to every one that **sent** us
+feedback." 
+
+"If you want to join us, just
+check out page 34 to see how you can help." should read:
+
+"If you want to join us, just
+check out page **35** to see how you can help."
+
+"and we'll try provide you with hard copies" should read:
+
+"and we'll try **to** provide you with hard copies" (this could also be **and**)
+===== page 3 =====
+It's "Table of Content**s**", not "Table of Content".
+
+===== page 4 =====
+
+PgNext 2012 in Denver is now canceled; we probably shouldn't include it on this page.
+
+There is a white line between the photo and the right edge of the page. (Maybe this is a style choice?)
+
+For consistency:
+"http://www.pgday.fr" should end with a '/'
+"http://postgresopen.org" should end with a '/'
+
+The three URLs in the right column of boxes do not allow me to click them in Adobe Reader 10.1.3, but work when the document is viewed i Nitro PDF Reader 2.2.1.16 and directly in Google Chrome 18.0.1025.162 m.
+
+In Adobe Reader 10.1.3, the URLs select and copy with a space between the colon and double forward slashes: "%%http: //www.pgday. fr%%", also this one does not work as it tries to load "www.pgday." because of the space before "fr"
+
+----
+
+Also on the upcoming events, page 4 I think, at the bottom I think it's supposed to say:
+For more information on local and international PostgreSQL user conferences, check out the wiki !
+
+Instead it starts with "or".
+
+----
+===== page 5 =====
+
+"All there questions are
+currently being discussed." should read:
+
+"All **these** questions are
+currently being discussed."
+
+"Send your opinion about what your read in
+PostgreSQL Magazine" should read:
+
+"Send your opinion about what **you** read in
+PostgreSQL Magazine"
+
+===== page 7 =====
+
+"PostgreSQL is available as
+module inside the Heroku Platform" should read:
+
+"PostgreSQL is available as **a** 
+module inside the Heroku Platform"
+
+"http://scalr.net/features/databases/postgresl" should be "http://scalr.net/features/databases/postgres" (remove the 'l')
+
+The link "https://postgres.heroku.com/" cannot be clicked
+
+In Adobe Reader 10.1.3, the link "%%http: //www.npgsql .org%%" does not work because of the space before ".org"
+
+The image from page 6 is slightly overlapping on to the top left edge of this page. (No one will probably notice.)
+===== page 9 =====
+"The “core infrastructure team” — rather loosely
+defined here as the people with root on all
+VMs and the VM-Hosts and actively working on
+them consists of four people" should be:
+
+"The “core infrastructure team” — rather loosely
+defined here as the people with root on all
+VMs and the VM-Hosts and actively working on
+them **—** consists of four people"
+
+
+
+It depends how -> It depends on how
+
+publically -> publicly
+===== page 10 =====
+"That was a huge thing, the existing website
+framework" should be:
+
+"That was a huge thing**;** the existing website
+framework"
+
+"We also completely revamped our download
+system in the process, this now means that we are
+hosting all downloads" should be:
+
+"We also completely revamped our download
+system in the process**;** this now means that we are
+hosting all downloads"
+
+"The old and often hated page,
+with the enourmous amount of flags for the many
+countries which we previously used mirrors" should probably be:
+
+"The old and often hated page,
+with the **enormous** amount of flags for many
+countries which previously used mirrors" (note also removal of words for clarity)
+===== page 11 =====
+"pgFoundry was a very important
+part of the infrastructure in the past to help evolving
+and growing the community" should either be:
+
+"pgFoundry was a very important
+part of the infrastructure in the past **in** evolving
+and growing the community" //OR//:
+
+"pgFoundry was a very important
+part of the infrastructure in the past to help **evolve**
+and **grow** the community"
+
+----
+
+"we have now evolved to point" should be:
+"we have now evolved to **a** point"
+
+
+----
+"There are three large features actually": The first two sections (scalability and better partitions) should use the same emdash that follows "parallel query" for consistency.
+
+----
+
+"PGM: One word about pgFoundry, the PostgreSQL software forge.... There's been some complaints about it. We see lots of projets mo- ving to other 2code sharing plat- forms (such as github) and some community members even think pgFoundry should be closed. What's your opinion?"
+
+\\-> There's been some complaints - plural "some complaints" means it should be "there have been"
+\\-> "projets" instead of "projects"
+\\-> what's the 2?
+===== page 12 =====
+
+
+that has is overlooked all the time. -> that is overlooked all the time ?
+
+to see table output -> to see a table output
+
+The bottom right paragraph is hard to read (no line feed)
+
+----
+Might be too late to ask this question, but do we really need this cartoon here [and on page 3]? Could another one be used that might be funnier and have a little less nudity? (Not used to nipples on my tables of contents.)
+
+=> REPLACE Cartoon with : http://www.flickr.com/photos/12820606@N04/3585943121/
+===== page 13 =====
+"Yes querying the entire database and pulling out
+complete data (That you won't probably do" should be:
+
+"Yes querying the entire database and pulling out
+complete data (that you won't probably do" [i.e., no initcap of "that"]
+
+
+----
+
+"use a different operator for same stuff" should be: "use a different operator for **the** same stuff"
+
+----
+
+
+"if you have been
+moving to some document stores just because the
+reason that RDBMS don't provide them" should be EITHER:
+
+"if you have been
+moving to some document stores just because the RDBMS doesn't provide them"
+OR
+"if you have been
+moving to some document stores just for the
+reason that the RDBMS dosn't provide them"
+===== page 15 =====
+As an aside: The overall lack of Oxford/serial commas in the magazine really hurts on this page, in which features (especially new ones) are listed, and it's difficult to determine where the split is in the final two entries (i.e., "These include Synchronous Replication, Per-Column Collations**,** and Unlogged Tables" is //much// clearer to read).
+
+
+----
+
+
+"participating to the PG Day France" should be: "participating **in** the PG Day France"
+
+----
+
+top pf page, not an error, but perhaps for better flow:
+
+We really struggled to choose the ten most disruptive features to showcase with step-by-step examples.
+
+"is gonna change" - technically valid word use (gonna is in the dictionary), but doesn't seem professional, suggest "is going to change" 
+
+Under "Responding to Users"
+
+I'm torn whether "several features which users have been requesting" is correct, or if it would be better written as "several features that users have been been requesting." I'm leaning towards "that" but it's a toss-up to me.
+
+===== page 16 =====
+
+top of page:
+sentence at top seems off. Perhaps: "SQL/MED (Management of External Data) is an extension in the SQL:2003 standard that defines how foreign-data wrappers (FDW) and datalink types allow SQL to be used to access data stored outside of the RDBMS."
+===== page 19 =====
+
+setted up -> set up
+
+setted -> set
+
+Syncrhonous -> Synchronous
+
+systems views -> system views
+
+===== page 20 =====
+
+Makefilethat -> Makefile that
+
+===== page 21 =====
+
+
+Here is an example with pg_trgm, pg_trgm -> Here is an example with pg_trgm. pg_trgm
+
+a indexed -> an indexed
+
+ <-> -> <nowiki><-></nowiki>
+
+===== page 23 =====
+No line feed at all
+
+Empty URL for doc
+
+===== page 29 =====
+
+I can start slave -> I can start the slave
+
+===== page 31 =====
+
+have only single -> have only a single
+
+And all works fine now. Great! The only missing
+feature is the ability to make slaves-off-slave still
+work when a slave gets promoted to standalone, but
+unfortunately, it’s not here ??
+
+===== page 32 =====
+
+Article intro: ...popular management tools : -> ...popular management tools: (lose the space before the colon)
+
+----
+
+First paragraph: ...take a look at pgAdmin ! -> ...take a look at pgAdmin!
+
+----
+
+"which we later discovered to be replaced" should be "which we later discovered was replaced"
+===== page 34 =====
+
+About the Author: Simon Merrick (@Mactasia)has worked -> ...(@Mactasia) has... (i.e. space needed).
+
+
+===== page 35 =====
+
+Don't worry, this our next challenge ! -> this is our next
+
+You have something to say about PostgreSQL ? As article ? -> An article
+
+Lose extra spaces before punctuation:
+  * Sub-heading: You can help us in various ways !! -> ...in various ways!!
+  * Translators: language ? -> language?
+  * Translators: challenge ! -> challenge!
+  * Translators: off the ground : -> off the ground:
+  * Writers: PostgreSQL ? -> PostgreSQL?
+  * Writers: article ? -> article?
+  * Writers: insights ? -> insights?
+  * Copy Editors: wordsmith ! -> wordsmith!
+  * Distribute PG Mag: PDF version here : -> PDF version here:
+
+Copy Editors: ...avoiding jargon, cutting article -> cutting article**s**

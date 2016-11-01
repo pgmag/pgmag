@@ -1,0 +1,75 @@
+''TITLE'' : Unlogged tables
+
+''HEADER'' : When performance is more important than durability, unlogged tables provide a way to improve performance while keeping the data managed within PostgreSQL. Removing logging reduces I/O overhead, yielding performance improvements up to 10 times faster when compared to logged tables. Scenarios expected to leverage unlogged tables include web session data, real time logging, ETL and temporary/intermediate tables for functions.
+
+-----
+
+''TEXT'' :
+
+Introduced in PostgreSQL 9.1, unlogged tables are designed for ephemeral data. They are much faster on writes, but won't survive a crash (it will be truncated at database restart in case of a crash). Currently, GiST indexes are not supported on unlogged tables, and cannot be created on them.
+
+They don't have the WAL maintenance overhead, so they are much faster to write to. Here is a (non-realistic) example:
+
+
+First let's create an unlogged relation:
+  
+  # CREATE UNLOGGED TABLE testu (a int);
+  CREATE TABLE
+
+Now for comparison purposes, we'll create a second table – identical, but logged:
+
+  # CREATE TABLE test (a int);
+  CREATE TABLE
+
+Let's put an index on each table:
+
+  # CREATE INDEX idx_test on test (a);
+  CREATE INDEX
+  # CREATE INDEX idx_testu on testu (a );
+  CREATE INDEX
+
+Now we'll see how faster we can go :  
+
+  =# \timing 
+  Timing is on.
+  =# INSERT INTO test SELECT generate_series(1,1000000);
+  INSERT 0 1000000
+  Time: 17601,201 ms
+  =# INSERT INTO testu SELECT generate_series(1,1000000);
+  INSERT 0 1000000
+  Time: 3439,982 ms
+
+With this example, the unlogged table is 5 times faster than the regular one. Even when using the COPY command, the write performance is much faster with unlogged tables.
+
+----
+SUBHEADER : Performances are greatly improved for ephemeral data
+----
+
+But remember ! If your PostgreSQL crashes you will lose all the content , even if you force a checkpoint : 
+
+
+  $ cat test.sql
+  INSERT INTO testu VALUES (1);
+  CHECKPOINT
+  INSERT INTO testu VALUES (2);
+
+
+  $ psql -f test.sql ; killall -9 postgres postmaster
+  INSERT 0 1
+  CHECKPOINT
+  INSERT 0 1
+  postmaster: no process found
+
+The server was forced to shutdown immediatly. And after restart:
+
+
+  # select * from testu;
+      a
+  -----------
+  
+  (0 rows)
+
+
+Many "NoSQL" engines advertise a speed advantage over "traditional" RDBMS engines, by employing a similar unlogged approach. PostgreSQL 9.1 provides an option, allowing a database designer to choose between performance and crash safety for tables in the same database, without having to abandon the rich feature set provided by PostgreSQL.
+
+In other words : unlogged tables are very efficient for caching data, or for anything that can be rebuilt in case of a crash. 

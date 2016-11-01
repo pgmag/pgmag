@@ -1,0 +1,28 @@
+====== Page Layout in Progress ======
+
+Color scheme
+
+|Not done|//Content imported//|**Layout begun**|**__Layout done__**|''__last proof__''^ready|
+
+| ^ ^1|    Front Page|
+^Editorial    ^2^3|    Table of content|
+|Agenda       ^4^5 |    Agenda|
+|News         ^6^7|    News|
+|**__Interview__**    ^8^9|    **__Interview__**|
+|**__Interview__**    ^10^11|   **Interview**|
+|**__Interview__**    ^12^13|  **Interview**|
+|Skytools 3.0 ^14^15|  Skytools 3.0|
+|Skytools 3.0 ^16^17|  Skytools 3.0|
+|**PG9.1 front **   ^18^19|    **__PG9.1 intro __**|
+|**__PG9.1 sqlmed    __**   ^20^21|     **__PG9.1 collation__**|
+|**__PG9.1 unlogged__**        ^22^23|    **__PG9.1 sync rep__**|
+|**__PG9.1 extensions__**        ^24^25 |     **__PG9.1 knn index__**|
+|**__PG9.1 pgxn __**       ^26^27|    **__PG9.1 se postgres__**|
+|**__PG9.1 ssi__**        ^28^29|    **__PG9.1 wcte__**|
+|Happy User   ^30^31|   Happy User|
+|**__Waiting for 9.2 __**  ^32^33 |  **__Waiting for 9.2__** |
+|**__Waiting for 9.2 __**  ^32^33 |  **__Waiting for 9.2__** |
+|//Opinion//      ^34^35|     //Opinion//|
+|Elephant & Lion  ^36^  |          |
+
+alpha1 : [[http://www.cgemy.com/public/pgmag/issue-01-cedric-alpha1.pdf]]

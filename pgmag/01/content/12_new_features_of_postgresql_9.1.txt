@@ -1,0 +1,389 @@
+====== 12 awesome new features ======
+
+
+Synchronous replication and other replication features
+
+There are quite a lot of new features around replication in 9.1:
+
+    In 9.0, the user used for replication had to be a superuser. It's no longer the case, there is a new 'replication' privilege. 
+
+ CREATE ROLE replication_role REPLICATION LOGIN PASSWORD 'pwd_replication'
+
+This role can then be added to the pg_hba.conf to be used for streaming replication. It's better, from a security point of view, than having a superuser role doing this job.
+
+Now that we have a cluster and created our replication user, we can set the database up for streaming replication. It's a matter of adding the permission to connect to the virtual replication database in pg_hba.conf, setting up wal_level, archiving (archive_mode, archive_command) and max_wal_senders, and has been covered in the 9.0 documentation.
+
+When our database cluster is ready for streaming, we can demo the second new feature.
+
+    pg_basebackup. 
+
+This new tool is used to create a clone of a database, or a backup, using only the streaming replication features. There is no need to call pg_start_backup(), then copy the database manually and call pg_stop_backup(). pg_basebackup does all in one command. We'll clone the running database to /tmp/newcluster:
+
+ > pg_basebackup -D /tmp/newcluster -U replication -v
+ Password: 
+ NOTICE:  pg_stop_backup complete, all required WAL segments have been archived
+ pg_basebackup: base backup completed
+
+This new database is ready to start: just add a recovery.conf file with a restore_command to retrieve archived WAL files, and start the new cluster. pg_basebackup can also create tar backups, or include all required xlog files (to get a standalone backup).
+
+As we're going to now demo streaming replication with synchronous commit, we'll setup a recovery.conf to connect to the master database and stream changes.
+
+We'll create a recovery.conf containing something like this:
+
+ restore_command = 'cp /tmp/%f %p'               # e.g. 'cp /mnt/server/archivedir/%f %p'
+ standby_mode = on
+ primary_conninfo = 'host=localhost port=59121 user=replication password=replication application_name=newcluster'            # e.g. 'host=localhost port=5432'
+ trigger_file = '/tmp/trig_f_newcluster'
+
+Then we'll start the new cluster:
+
+ pg_ctl -D /tmp/newcluster start
+ 
+ LOG:  database system was interrupted; last known up at 2011-05-22 17:15:45 CEST
+ LOG:  entering standby mode
+ LOG:  restored log file "00000001000000010000002F" from archive
+ LOG:  redo starts at 1/2F000020
+ LOG:  consistent recovery state reached at 1/30000000
+ LOG:  database system is ready to accept read only connections
+ cp: cannot stat « /tmp/000000010000000100000030 »: No such file or directory
+ LOG:  streaming replication successfully connected to primary
+
+Ok, now we have a slave, streaming from the master, but we're still asynchronous. Notice that we set application_name in the connection string in recovery.conf.
+
+    Synchronous replication 
+
+To get synchronous, just change, in the master's postgresql.conf:
+
+ synchronous_standby_names = 'newcluster'
+
+This is the application_name from our primary_conninfo from the slave. Just do a pg_ctl reload, and this new parameter will be set. Now any commit on the master will only be reported as committed on the master when the slave has written it on its on journal, and acknowledged it to the master.
+
+A word of warning: transactions are considered committed when they are applied to the slave's journal, not when they are visible on the slave. It means there will still be a delay between the moment a transaction is committed on the master, and the moment it is visible on the slave. This still is synchronous replication because no data will be lost if the master crashes.
+
+One of the really great features of synchronous replication is that it is controllable per session. The parameter synchronous_commit can be turned off (it is on by default) in a session, if it does not require this synchronous guarantee. If you don't need it in your transaction, just do a
+
+ SET synchronous_commit TO off
+
+and you wont pay the penalty.
+
+There are other new replication features for PostgreSQL 9.1:
+
+    The slaves can now ask the master not to vacuum records they still need. 
+
+It was a major setup problem with 9.0: a vacuum could destroy records that were still necessary to running queries on the slave, triggering replication conflicts. The slave then had to make a choice: kill the running query, or accept deferring the application of the modifications, and lag behind. One could work around this by setting vacuum_defer_cleanup_age to a non-zero value, but it was quite hard to get a correct value for it. This new feature is enabled with the parameter hot_standby_feedback, on the standby databases. Of course, this means that the standby can prevent VACUUM from doing a correct maintenance on the master, if there are very long running queries on the slave.
+
+    pg_stat_replication is a new system view. 
+
+It displays, on the master, the status of all slaves: how much WAL they received, if they are connected, synchronous, what they did replay:
+
+ =# SELECT * from pg_stat_replication ;
+  procpid | usesysid |   usename   | application_name | client_addr | client_hostname | client_port |        backend_start         |   state   | sent_location | write_location | flush_location | replay_location | sync_priority | sync_state 
+ ---------+----------+-------------+------------------+-------------+-----------------+-------------+------------------------------+-----------+---------------+----------------+----------------+-----------------+---------------+------------
+    17135 |    16671 | replication | newcluster       | 127.0.0.1   |                 |       43745 | 2011-05-22 18:13:04.19283+02 | streaming | 1/30008750    | 1/30008750     | 1/30008750     | 1/30008750      |             1 | sync
+
+There is no need to query the slaves anymore to know their status relative to the master.
+
+    pg_stat_database_conflicts is another new system view. 
+
+This one is on the standby database, and shows how many queries have been cancelled, and for what reasons:
+
+ =# SELECT * from pg_stat_database_conflicts ;
+  datid |  datname  | confl_tablespace | confl_lock | confl_snapshot | confl_bufferpin | confl_deadlock 
+ -------+-----------+------------------+------------+----------------+-----------------+----------------
+      1 | template1 |                0 |          0 |              0 |               0 |              0
+  11979 | template0 |                0 |          0 |              0 |               0 |              0
+  11987 | postgres  |                0 |          0 |              0 |               0 |              0
+  16384 | marc      |                0 |          0 |              1 |               0 |              0
+
+    replication can now be easily paused on a slave. 
+
+Just call pg_xlog_replay_pause() to pause, pg_xlog_replay_resume() to resume. This will freeze the database, making it a very good tool to do consistent backups.
+
+pg_is_xlog_replay_paused() can be used to know the current status.
+
+Log replay can also now be paused at the end of a database recovery without putting the database into production, to give the administrator the opportunity to query the database. The administrator can then check if the recovery point reached is correct, before ending recovery. This new parameter is pause_at_recovery_target, in recovery.conf.
+
+    Restore points can now be created. 
+
+They are just named addresses in the transaction journal.
+
+They can then be used by specifying a recovery_target_name, instead of a recovery_target_time or a recovery_target_xid in the recovery.conf file.
+
+They are created by calling pg_create_restore_point().
+Per-column collations
+
+The collation order is not unique in a database anymore.
+
+Let's say you were using a 9.0 database, with an UTF8 encoding and a de_DE.utf8 collation (alphabetical sort) order, because most of your users speak German. If you had to store french data too, and had to sort, some french users could have been disappointed:
+
+ SELECT * from (values ('élève'),('élevé'),('élever'),('Élève')) as tmp order by column1;
+  column1 
+ ---------
+  élevé
+  élève
+  Élève
+  élever
+
+It's not that bad, but it's not the french collation order: accentuated (diactric) characters are considered equal on first pass to the unaccentuated characters. Then, on a second pass, they are considered to be after the unaccentuated ones. Except that on that second pass, the letters are considered from the end to the beginning of the word. That's a bit strange, but that's the french collation rules…
+
+With 9.1, two new features are available:
+
+    You can specify collation at query time: 
+
+ SELECT * FROM (VALUES ('élève'),('élevé'),('élever'),('Élève')) AS tmp ORDER BY column1 COLLATE "fr_FR.utf8";
+  column1 
+ ---------
+  élève
+  Élève
+  élevé
+  élever
+
+    You can specify collation at table definition time: 
+
+ CREATE TABLE french_messages (message TEXT COLLATE "fr_FR.utf8");
+ INSERT INTO french_messages VALUES ('élève'),('élevé'),('élever'),('Élève');
+ SELECT * FROM french_messages ORDER BY message;
+  message 
+ ---------
+  élève
+  Élève
+  élevé
+  élever
+
+And of course you can create an index on the message column, that can be used for fast french sorting. For instance, using a table with more data and without collation defined:
+
+ CREATE TABLE french_messages2 (message TEXT); -- no collation here
+ INSERT INTO french_messages2 SELECT * FROM french_messages, generate_series(1,100000); -- 400k rows
+ CREATE INDEX idx_french_ctype ON french_messages2 (message COLLATE "fr_FR.utf8");
+ EXPLAIN SELECT * FROM french_messages2 ORDER BY message;
+                                   QUERY PLAN                                   
+ -------------------------------------------------------------------------------
+  Sort  (cost=62134.28..63134.28 rows=400000 width=32)
+    Sort Key: message
+    ->  Seq Scan on french_messages2  (cost=0.00..5770.00 rows=400000 width=32)
+ 
+ EXPLAIN SELECT * FROM french_messages2 ORDER BY message COLLATE "fr_FR.utf8";
+                                             QUERY PLAN                                            
+ --------------------------------------------------------------------------------------------------
+  Index Scan using idx_french_ctype on french_messages2  (cost=0.00..17139.15 rows=400000 width=8)
+
+Unlogged Tables
+
+These can be used for ephemeral data. An unlogged table is much faster to write, but won't survive a crash (it will be truncated at database restart in case of a crash).
+
+They don't have the WAL maintenance overhead, so they are much faster to write to.
+
+Here is a (non-realistic) example:
+
+ # CREATE TABLE test (a int);
+ CREATE TABLE
+ # CREATE UNLOGGED table testu (a int);
+ CREATE TABLE
+ # CREATE INDEX idx_test on test (a);
+ CREATE INDEX
+ # CREATE INDEX idx_testu on testu (a );
+ CREATE INDEX
+ =# \timing 
+ Timing is on.
+ =# INSERT INTO test SELECT generate_series(1,1000000);
+ INSERT 0 1000000
+ Time: 17601,201 ms
+ =# INSERT INTO testu SELECT generate_series(1,1000000);
+ INSERT 0 1000000
+ Time: 3439,982 ms
+
+These table are very efficient for caching data, or for anything that can be rebuilt in case of a crash.
+
+
+Extensions
+
+This item and the following one are another occasion to present several features in one go. We'll need to install pg_trgm, and it is now an extension.
+
+Let's first install pg_trgm. Until 9.0, we had to run a script manually, the command looked like this:
+
+ \i /usr/local/pgsql/share/contrib/pg_trgm.sql
+
+This was a real maintenance problem: the created functions defaulted to the public schema, were dumped "as is" in pg_dump files, often didn't restore correctly as they depended on external binary objects, or could change definitions between releases.
+
+With 9.1, one can use the CREATE EXTENSION command:
+
+ CREATE EXTENSION [ IF NOT EXISTS ] extension_name
+     [ WITH ] [ SCHEMA schema ]
+              [ VERSION version ]
+              [ FROM old_version ]
+
+Most important options are extension_name, of course, and schema: extensions can be stored in a schema.
+
+So let's install the pg_trgm for the next example:
+
+ =# CREATE schema extensions;
+ CREATE SCHEMA
+
+ =# CREATE EXTENSION pg_trgm WITH SCHEMA extensions;
+ CREATE EXTENSION
+
+Now, pg_trgm is installed in an 'extensions' schema. It will be included in database dumps correctly, with the CREATE EXTENSION syntax. So if anything changes in the extension, this extension will be restored with the new definition.
+
+One can get the list of extensions under psql:
+
+ \dx
+                                     List of installed extensions
+    Name   | Version |   Schema   |                            Description                            
+ ----------+---------+------------+-------------------------------------------------------------------
+  pg_trgm  | 1.0     | extensions | text similarity measurement and index searching based on trigrams
+  plpgsql  | 1.0     | pg_catalog | PL/pgSQL procedural language
+ (2 rows)
+
+
+K-Nearest-Neighbor Indexing
+
+GIST indexes can now be used to return sorted rows, if a 'distance' has a meaning and can be defined for the data type. For now, this work has been done for the point datatype, the pg_trgm contrib, and many btree_gist datatypes. This feature is available for all datatypes to use, so there will probably be more in the near future.
+
+For now, here is an example with pg_trgm. pg_trgm uses trigrams to compare strings. Here are the trigrams for the 'hello' string:
+
+ SELECT show_trgm('hello');
+             show_trgm            
+ ---------------------------------
+  {"  h"," he",ell,hel,llo,"lo "}
+
+Trigrams are used to evaluate similarity (between 0 and 1) between strings. So there is a notion of distance, with distance defined as '1-similarity'.
+
+Here is an example using pg_trgm. The table contains 5 million text records, for 750MB.
+
+ CREATE TABLE test_trgm ( text_data text);
+
+ CREATE INDEX test_trgm_idx on test_trgm using gist (text_data extensions.gist_trgm_ops);
+
+Until 9.0, if we wanted the 2 closest text_data to hello from the table, here was the query:
+
+ SELECT text_data, similarity(text_data, 'hello')
+ FROM test_trgm 
+ WHERE text_data % 'hello'
+ ORDER BY similarity(text_data, 'hello')
+ LIMIT 2;
+
+On the test database, it takes around 2 seconds to complete.
+
+With 9.1 and KNN, one can write:
+
+ SELECT text_data, text_data <-> 'hello'
+ FROM test_trgm 
+ ORDER BY text_data <-> 'hello'
+ LIMIT 2;
+
+The <-> operator is the distance operator. It runs in 20ms, using the index to directly retrieve the 2 best records.
+
+While we're talking about pg_trgm, another new feature is that the LIKE and ILIKE operators can now automatically make use of a trgm index. Still using the same table:
+
+ SELECT text_data
+ FROM test_trgm
+ WHERE text_data like '%hello%';
+
+uses the test_trgm_idx index (instead of scanning the whole table).
+Serializable Snapshot Isolation
+
+This feature is very useful if you need all your transactions to behave as if they are running serially, without sacrificing too much throughput, as is currently the case with other 'serializable' isolation implementations (this is usually done by locking every record accessed).
+
+As is it quite complex to demonstrate correctly, here is a link to a full explanation of this feature: http://wiki.postgresql.org/wiki/SSI
+
+TODO: the SSI documentation always concludes with a commit. It may be confusing to the reader.
+
+
+Writeable Common Table Expressions
+
+This extends the WITH syntax introduced in 8.4. Now, data modification queries can be put in the WITH part of the query, and the returned data used later.
+
+Let's say we want to archive all records matching %hello% from our test_trgm table:
+
+ CREATE TABLE old_text_data (text_data text);
+ 
+ WITH deleted AS (DELETE FROM test_trgm WHERE text_data like '%hello%' RETURNING text_data)
+ INSERT INTO old_text_data SELECT * FROM deleted;
+
+All in one query.
+
+As a more ambitious example, the following query updates a pgbench database, deleting a bunch of erroneous transactions and updating all related teller, branch, and account totals in a single statement:
+
+ WITH deleted_xtns AS (
+ DELETE FROM pgbench_history
+ WHERE bid = 4 and tid = 9
+ RETURNING *
+ ), 
+ deleted_per_account as (
+   SELECT aid, sum(delta) as baldiff 
+   FROM deleted_xtns
+   GROUP BY 1
+ ),
+   accounts_rebalanced as (
+     UPDATE pgbench_accounts
+     SET abalance = abalance - baldiff
+     FROM deleted_per_account
+     WHERE deleted_per_account.aid = pgbench_accounts.aid
+     RETURNING deleted_per_account.aid, pgbench_accounts.bid,
+       baldiff
+   ),
+     branch_adjustment as (
+       SELECT bid, SUM(baldiff) as branchdiff
+       FROM accounts_rebalanced
+       GROUP BY bid
+     )
+ UPDATE pgbench_branches
+ SET bbalance = bbalance - branchdiff
+ FROM branch_adjustment
+ WHERE branch_adjustment.bid = pgbench_branches.bid
+ RETURNING branch_adjustment.bid,branchdiff,bbalance;
+
+SE-Postgres
+
+     PostgreSQL is the only database which offers full integration 
+       with SELinux secure data frameworks.  Military-grade security 
+       for your database. 
+
+TODO
+PGXN
+
+PGXN is the PostgreSQL Extension Network, a central distribution system for open-source PostgreSQL extension libraries. Extensions author can submit their work together with metadata describing them: the packages and their documentation are indexed and distributed across several servers. The system can be used via web interface or using command line clients thanks to a simple API.
+
+A comprehensive PGXN client is being developed. It can be installed with:
+
+$ easy_install pgxnclient
+Searching for pgxnclient
+...
+Best match: pgxnclient 0.2.1
+Processing pgxnclient-0.2.1-py2.6.egg
+...
+Installed pgxnclient-0.2.1-py2.6.egg
+
+Among the other commands, it allows to search for extensions in the website:
+
+$ pgxn search pair
+pair 0.1.3
+    ... Usage There are two ways to construct key/value *pairs*: Via the
+    *pair*() function: % SELECT *pair*('foo', 'bar'); *pair* ------------
+    (foo,bar) Or by using the ~> operator: % SELECT 'foo' ~> 'bar';
+    *pair*...
+
+semver 0.2.2
+    *pair* │ 0.1.0 │ Key/value *pair* data type Note that "0.35.0b1" is less
+    than "0.35.0", as required by the specification. Use ORDER BY to get
+    more of a feel for semantic version ordering rules: SELECT...
+
+To build them and install in the system:
+
+$ pgxn install pair
+INFO: best version: pair 0.1.3
+INFO: saving /tmp/tmpezwyEO/pair-0.1.3.zip
+INFO: unpacking: /tmp/tmpezwyEO/pair-0.1.3.zip
+INFO: building extension
+...
+INFO: installing extension
+[sudo] password for piro: 
+/bin/mkdir -p '/usr/local/pg91b1/share/postgresql/extension'
+...
+
+And to load them as database extensions:
+
+$ pgxn load -d mydb pair
+INFO: best version: pair 0.1.3
+CREATE EXTENSION
+

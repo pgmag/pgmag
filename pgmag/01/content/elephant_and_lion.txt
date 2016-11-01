@@ -1,0 +1,150 @@
+''TITLE'' : Elephants and Lions
+
+''HEADER'' : With the recent release of Lion and Lion Server, one noticeable absentee was MySQL, which we later discovered to be replaced by PostgreSQL. In this article we will take a look at how to connect to Lion Server’s built-in PostgreSQL services. We'll be focusing on the 2 most popular managment tools : an application called pgAdmin and a web service known as PgPhpAdmin.
+
+
+----
+
+''TEXT'' : 
+
+
+----
+''SUBHEADER1'' : How to use pgAdmin...
+----
+
+
+First let's take a look at pgAdmin ! We need to open Server.app and enable the web service, as in most cases people want to use PostgreSQL to run a database for their web install. In this example, I want to do just that! I’ve also gone ahead and enabled PHP web applications. (Please note that this step is not important to the running of PostgreSQL, but will be required for your web applications that need PostgreSQL).
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/10/Screen-Shot-2011-10-18-at-08.13.44.png
+----
+
+Next we need to download pgAdmin. Download the latest Mac release, open up the DMG and drop it in your Applications folder (you can also link it in your dock to make it more accessible). Now lets check a few things before firing up PostgreSQL. Open up Terminal and type:
+  
+  sudo serveradmin list
+
+
+This will display all of the available services of Lion Server. Check that ‘postgres’ is in there and type in the next command.
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/10/Screen-Shot-2011-10-18-at-08.30.15.png
+----
+
+Next type in:
+  
+  sudo serveradmin fullstatus postgres
+
+
+This will tell you the current status of the postgres service. If you have already been using the Server.app, then it’s possible the state will already be ‘running’.
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/10/Screen-Shot-2011-10-18-at-08.32.10.png
+----
+
+If not, then you can start it using the following command:
+  
+  sudo serveradmin start postgres
+
+This should result in the postgres state being ‘running’.
+
+If you were now to open pgAdmin and try to connect it will still fail. This is because postgres is not listening to connections on localhost. To fix this, we need to edit a file:
+  
+  /System/Library/LaunchDaemons/org.postgresql.postgres.plist
+
+Search for the line:
+  
+  <string>listen_addresses=</string>
+
+Add in our localhost address:
+  
+  <string>listen_addresses=127.0.0.1</string>
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/10/Screen-Shot-2011-10-18-at-08.44.46.png
+----
+
+Now lets stop and start postgres. In Terminal:
+  
+  sudo serveradmin stop postgres
+  sudo serveradmin start postgres
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/10/Screen-Shot-2011-10-18-at-08.46.42.png
+----
+
+Now lets open up pgAdmin and connect to postgreSQL. Click the connect icon in the top left corner and enter the settings for your setup. Enter a descriptive name, Host (which we’ve just opened as 127.0.0.1), Username and Password (by default these are ‘_postgres’ and your administrator password).
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/10/Screen-Shot-2011-10-18-at-08.48.12.png
+----
+
+Voila! You are connected and can create new databases.
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/10/Screen-Shot-2011-10-18-at-08.50.07.png
+----
+
+
+----
+''SUBHEADER2'' : ... or PhpPgAdmin
+----
+
+Now let's try PhpPgAdmin, just head over to the phpPgAdmin website and download the latest release. Unzip the contents and rename the folder to something like “phpPgAdmin” to make it easier to browse to. You need to place this folder in your web documents folder in the following location:
+   
+   /Library/Server/Web/Data/Sites/Default/
+
+Open up Safari and browse to the phpPgAdmin folder on your localhost web server:
+  
+    http://localhost/phppgadmin/
+
+At this point if the PostgreSQL server has a red X next to it, it means it’s not running.
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/07/Screen-Shot-2011-07-26-at-10.22.06-1024x791.png
+----
+
+Like above the PostgreSQL service must be running. An alternative way to start PostgreSQL is to open Server App and launch the “Wiki” service. You may want to change the “Wiki Creators” to be Admin’s only or otherwise everybody can create Wikis :
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/07/Screen-Shot-2011-07-26-at-10.31.28.png
+----
+
+Now if you head back to the phpPgAdmin page in Safari and select the database you should now be able to login with the user “_postgres” and your administrator password.
+
+----
+''PICTURE'' : http://www.mactasia.co.uk/wp-content/uploads/2011/07/Screen-Shot-2011-07-26-at-10.37.26-1024x791.png
+----
+
+----
+''BOX 1'' : Download 
+
+''BOX 1 TEXT'' :
+pgAdmin is available at : 
+http://www.pgadmin.org/
+
+PhpPgAdmin can be found at :
+http://phppgadmin.sourceforge.net/
+
+
+----
+''BOX 2 TITLE'' : Known Issue
+
+''BOX 2 TEXT'' :
+If you experience issues with permissions or accessing the pg_hba.conf file, you may need to change the permissions on the pgsql folder in /private/var/ – Get Info on the pgsql folder and add your current administrative user to have read/write access.
+
+
+ ----
+''BOX 3'' : About the article 
+
+''BOX 3 TEXT'' :
+The original article is available at http://...
+
+
+----
+''BOX 4 TITLE'' : About the Author
+
+''BOX 4 TEXT'' :
+Simon Merrick (@Mactasia) has worked in education based IT for the past 7 years, alongside offering Apple Consultancy services. He often blogs and writes “how to” articles for his website Mactasia (mactasia.co.uk).
+
+''BOX 4 PICTURE'' : 
+{{:wiki:01:photo2.jpg?linkonly|}}

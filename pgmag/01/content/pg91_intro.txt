@@ -1,0 +1,72 @@
+''TITLE'' : 
+
+''HEADER'' :  The latest major version of PostgreSQL has so many innovations and improvements ! We really struggled to choose the ten most disruptive features and showcase each of them, with a step-by-step example. Let's see what PostgreSQL 9.1 is gonna change for your data severs !
+
+
+-----
+
+''TEXT'' : 
+
+In September 2011, The PostgreSQL Global Development Group released PostgreSQL 9.1. This latest version of the leading open source database offers innovative technology, unmatched extensibility, and new features.
+
+-----
+''SUBHEADER'' : Responding to Users
+-----
+
+Version 9.1 delivers several features which users have been requesting for years, removing roadblocks to deploying new or ported applications on PostgreSQL. These include Synchronous Replication, Per-Column Collations and Unlogged Tables.
+
+
+-----
+''SUBHEADER'' : Advancing the State of the Art
+-----
+
+As always the PostgreSQL community innovates with cutting-edge features ! Version 9.1 includes 4 items which are new to the database industry, such as: K-Nearest-Neighbor Indexing, Serializable Snapshot Isolation, Writeable Common Table Expressions and Security-Enhanced Postgres.
+
+-----
+''SUBHEADER'': Extending the Database Engine
+-----
+
+PostgreSQL's extensibility enables users to add new functionality to a running production database, and use them for tasks no other database system can perform. Version 9.1 adds new extensibility tools, including: SQL/MED support, Extensions and the PGXN network.
+
+In PostgreSQL's 25th year of database development, the community continues to advance database technology with every annual release ! 
+
+-----
+
+QUOTE 1 : "PostgreSQL 9.1 provides some of the most advanced enterprise capabilities of any open source database, and is backed by a vibrant and innovative community with proven customer success. PostgreSQL is well positioned for building and running applications in the cloud." 
+Charles Fan, Sr. VP R&D, VMware
+
+
+
+----
+''BOX 1 TITLE'': Check out the wiki
+
+''BOX 1 TEXT'': This article is heavily based on the wiki page 
+called  "What's new in PostgreSQL 9.1 ?".  
+
+http://www.pgmag.org/0115
+
+----
+
+----
+''BOX 2 TITLE'': Marc Cousin
+
+''BOX 2 IMAGE'': {{:wiki:01:dscf2009.jpg?linkonly|}}
+
+''BOX 2 TEXT'': Marc Cousin is a PostgreSQL and Oracle DBA since 1999. He is involved in the Postgres community in various ways, providing help on the French-speaking forum or participating to the PG Day France. He works at Dalibo as a Senior DBA.
+
+----
+
+-----
+
+TOC : 
+
+SQL/MED 	 16
+Per column collation	 16
+Unlogged tables	 17	
+Sync. replication	 18
+Extensions	 19	
+KNN Index	 20	
+PGXN	 21
+SE Postgres	 22	
+SSI	 23	
+Writeable CTE	 24	

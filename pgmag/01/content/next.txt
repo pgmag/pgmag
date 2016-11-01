@@ -1,0 +1,38 @@
+''CATEGORY'' : Next
+
+''TITLE'' : How To Contribute 
+
+''HEADER'' : This magazine is a community-driven initiative. You can help us in various ways !
+
+-----
+
+''BOX 1 TITLE'': Translators 
+
+''BOX 1 TEXT'': You like the magazine, but you'd like to read it in your own language ? Don't worry, this our next challenge ! So far we have 4 translating teams coming off the ground : Spanish, Portuguese, French and Chinese. For now, there's no translation available but hopefully we'll have something to present by the end of the year. If you want to help one of these teams, check out our website and contact the team leader. If you want to create a new team for another language, please send us a message at contact@pgmag.org
+
+''BOX 1 URL'': http://pgmag.org/Contribute#translating_an_issue
+
+----
+
+
+
+
+''BOX 3 TITLE'': Writers 
+
+''BOX 3 TEXT'': You have something to say about PostgreSQL ? As article ? A tutorial ? Some insights ? Just send us your text at articles@pgmag.org. Our next issue will talk about many things, including PostGIS 2.0 and PostgreSQL 9.2... The deadline is July 24th, 2012.
+
+-----
+
+''BOX 2 TITLE'': Copy Editors 
+
+''BOX 2 TEXT'': We're looking for editors to help us improve the formatting, style, and accuracy of the articles we receive. Typically, this involves correcting spelling, avoiding jargon, cutting article when they're long and ensuring that the text adheres style guidelines. This job is probably the most interesting part of magazine as you need to be both an experienced PostgreSQL DBA and a skilled wordsmith !
+
+
+-----
+
+''BOX 99 TITLE'': Distribute PG Mag
+
+''BOX 99 TEXT'': If you organize an event or meeting dedicated to PostgreSQL, please contact us. We will try to send you free copies of the magazine. You can also get the PDF version here : http://pgmag.org/01/download
+
+
+----

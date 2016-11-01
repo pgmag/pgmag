@@ -1,0 +1,50 @@
+''TITLE'': Extensions
+
+''HEADER'':
+
+While PostgreSQL has always been extensible, now users can easily create, load, upgrade, and manage any of dozens of database extensions using the EXTENSION database object. 
+
+----
+
+''TEXT'':
+
+This item and the following one are another occasion to present several features in one go. We'll need to install pg_trgm. In a nutshell, pg_trgm provides functions and operators for determining the similarity of ASCII alphanumeric text based on trigram matching, as well as index operator classes that support fast searching for similar strings. With PostgreSQL 9.1, it is now an extension.
+
+Let's first install pg_trgm. Up to 9.0, we had to run a script manually; the command looked like this:
+
+  \i /usr/local/pgsql/share/contrib/pg_trgm.sql
+
+This was a real maintenance problem: the created functions defaulted to the public schema, were dumped "as is" in pg_dump files, often didn't restore correctly as they depended on external binary objects, or could change definitions between releases.
+
+With 9.1, one can use the CREATE EXTENSION command:
+  
+  CREATE EXTENSION [ IF NOT EXISTS ] extension_name
+     [ WITH ] [ SCHEMA schema ]
+              [ VERSION version ]
+              [ FROM old_version ]
+
+The most important options are extension_name, of course, and schema: extensions can be stored in a schema.
+
+----
+''SUBHEADER'':  easily create, load, and manage new database features
+----
+
+So let's install the pg_trgm for the next example:
+  
+  =# CREATE schema extensions;
+  CREATE SCHEMA
+  =# CREATE EXTENSION pg_trgm 
+  -# WITH SCHEMA extensions;
+  CREATE EXTENSION
+
+Now, pg_trgm is installed in an 'extensions' schema. It will be included in database dumps correctly, with the CREATE EXTENSION syntax. So if anything changes in the extension, this extension will be restored with the new definition.
+
+One can get the list of extensions under psql:
+  
+  \dx
+      List of installed extensions
+   Name    | Version | Schema     | Description                            
+   --------+---------+------------+------------
+   pg_trgm | 1.0     | extensions | .....
+   plpgsql | 1.0     | pg_catalog | .....
+   (2 rows)

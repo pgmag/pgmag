@@ -1,0 +1,36 @@
+''TITLE'': SE-Postgres
+
+''HEADER'':
+
+Security-Enhanced Postgres is designed for military-grade data stores. It allows mandatory access control with full-integration support for Security-Enhanced Linux (SE-Linux). SE-Linux is a NSA project that modifies the Linux kernel with security-related functions. It has been endorsed by and included with major Linux distributions including, but not limited to, Red Hat, CentOS, Debian and Ubuntu. PostgreSQL is the only database system which has tight integration with SE-Linux.
+
+-----
+
+''TEXT'':
+
+Databases are significant facilities for managing information assets. Databases enable information to be searched for, retrieved, and stored in more elegant ways than with file systems.
+
+Most existing RDBMSs apply their own access controls, for example, GRANT and REVOKE, without collaborating with operating system. This can result in inconsistent access controls compared to ones on filesystem and so on.
+
+-----
+''SUBHEADER'': With SE-Postgres, you can deploy military-grade security and Mandatory Access Control
+-----
+
+Some modern operating systems have enhanced access control features, such as SELinux. The design of most of these features is based upon the reference monitor model (which came from 1980's researches), that allows all system access to be managed by a centralized security policy. The reference monitor model assumes that object managers (for example, operating systems) can capture all system access, and then make decisions about whether that access is allowed or denied. Note: an operating systems is not the object manager in all cases. A Relational Database Management System (RDBMS) is an object manager for database objects, similar to operating systems being object managers for file system objects. Previously, RDBMSs made access control decisions independently from a centralized security policy, and as such, meticulous care to keep its consistency between OS and RDBMS.
+
+
+
+SE-PostgreSQL is a built-in enhancement of PostgreSQL, providing fine-grained mandatory access control (MAC) for database objects. SE-PostgreSQL makes access control decisions based on SELinux security policy, the same way user access to file system objects is managed by the operating system. It provides the following significant features:
+
+1/ **Mandatory access controls** : PostgreSQL uses the concept of a database superuser that can bypass all access controls of native PostgreSQL. On the contrary, SE-PostgreSQL enforces its access control on any client, without exception, even if the client is a database superuser. Clients can only access database objects when access is allowed by both native PostgreSQL and SE-PostgreSQL.
+
+2/ **Fine-grained access controls** : SE-PostgreSQL allows access control to be configured at the column and row levels (only a few proprietary RDBMSs support column and row level access-control options). 
+
+3/ **Consistency in access controls** : SELinux requires all processes and objects to have a security context that represents its privileges and attributes. SE-PostgreSQL assigns a security context on each database objects (which are tuples in system/general tables), and makes access control decisions based on the privileges and attributes as if SELinux applies them in the kernel.
+
+----
+''BOX 1 TITLE'': Learn more
+
+''BOX 1 TEXT'': SE-Postgres is far too complex and powerful to be showcased on a single page. For more details, please check out the documentation at http://...
+
+----

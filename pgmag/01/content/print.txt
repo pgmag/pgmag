@@ -1,0 +1,7 @@
+====== Print ======
+
+You are free to download, print and distribute the magazine. 
+
+  * PGCon 2012 : 200 copies (sponsored by [[http://enterprisedb.com/|EntrepriseDB]])
+  * PG Day France 2012 : 100 copies  (sponsored by [[http://www.dalibo.com/|DALIBO]])
+  * S.E.L.F. : 100 copies

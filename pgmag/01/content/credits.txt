@@ -1,0 +1,23 @@
+About PG Mag
+
+PostgreSQL Magazine is edited by and for the PostgreSQL Community.
+
+General Editor: Damien Clochard
+
+Layout Editor : Cédric Gemy 
+
+Writers: Zohaib Sibte Hassan, Marc Cousin, Simon Merrick, Joshua Drake, Hubert  Lubaczewski
+
+Reviewers: Thom Brown, Ray O'Donnell, Osvaldo Tulini, Sivakumar, Matt Keranen, Jaime Casanova, Luca Ferrari, Nicolas Thauvin, Bob Hetrick, Josh Kupershmidt
+
+Tools : Scribus 1.4 / Gimp 2.6
+
+License:
+
+The articles contained in this magazine are released under the Creative Commons Attribution-ShareAlike 3.0 Unported license. This means you may adapt, copy, distribute and transmit the articles but only under the following conditions: You must attribute the work to the original author in some way (at least a name, email or URL) and to this magazine by name ('PostgreSQL Magazine') and the URL (pgmag.org). You cannot attribute the article(s) in any way that suggests that they endorse you or your use of the work. If you alter, transform, or build upon this work, you must distribute the resulting work under the same, similar or a compatible license.
+
+Disclaimer:
+
+PostgreSQL Magazine is an independent media. The views and opinions in the magazine should in no way be assumed to be endorsed by the PostgreSQL Global Development Group.
+This magazine is provided with absolutely no warranty whatsoever; neither the contributors nor PostgreSQL Magazine accept any responsibility or liability for loss or damage resulting from readers choosing to apply this content to theirs or others computers and equipment.
+

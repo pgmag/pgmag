@@ -1,0 +1,74 @@
+''TITLE'' : Per-Column Collation
+
+''HEADER'' : In multi-lingual databases, users can now set the collation for strings on a single column. This permits true multilingual databases, where each text column is a different language, and indexes and sorts correctly for that language.
+
+
+---- 
+  
+TEXT : 
+
+Let's say you were using a 9.0 database, with an UTF8 encoding and a de_DE.utf8 collation (alphabetical sort) order, because most of your users speak German. If you had to store french data too, and had to sort, some french users could have been disappointed:
+  
+  =# SELECT * from (values ('élève'),('élevé'),('élever'),('Élève')) 
+  -# as tmp order by column1;
+    column1 
+  ---------
+    élevé
+    élève
+    Élève
+    élever
+
+It's not that bad, but it's not the french collation order: accentuated (diactric) characters are considered equal on first pass to the unaccentuated characters. Then, on a second pass, they are considered to be after the unaccentuated ones. Except that on that second pass, the letters are considered from the end to the beginning of the word. That's a bit strange, but that's the french collation rules…
+
+With 9.1, two new features are available:
+
+You can specify collation at query time:
+
+  =# SELECT * FROM (VALUES ('élève'),('élevé'),('élever'),('Élève')) 
+  -# AS tmp ORDER BY column1 COLLATE "fr_FR.utf8";
+    column1 
+   ---------
+    élève
+    Élève
+    élevé
+    élever
+
+----
+
+''SUBHEADER'' : The collation order is not unique in a database anymore.
+
+----
+
+You can specify collation at table definition time:
+   
+  =# CREATE TABLE french_messages (message TEXT COLLATE "fr_FR.utf8");
+  =# INSERT INTO french_messages VALUES ('élève'),('élevé'),('élever'),('Élève');
+  =# SELECT * FROM french_messages ORDER BY message;
+    message 
+   ---------
+    élève
+    Élève
+    élevé
+    élever
+
+And of course you can create an index on the message column, that can be used for fast french sorting. For instance, using a table with more data (400k rows) and without collation defined:
+
+  =# CREATE TABLE french_messages2 (message TEXT); 
+  =# INSERT INTO french_messages2 
+  -# SELECT * FROM french_messages, generate_series(1,100000); 
+  =# CREATE INDEX idx_fr_ctype 
+  -# ON french_messages2 (message COLLATE "fr_FR.utf8");
+  
+  =# EXPLAIN SELECT * FROM french_messages2 
+  -# ORDER BY message;
+                                   QUERY PLAN                                   
+   -------------------------------------------------------------------------------
+    Sort  (cost=62134.28..63134.28 rows=400000 width=32)
+      Sort Key: message
+      ->  Seq Scan on french_messages2  (cost=0.00..5770.00 rows=400000 width=32)
+   
+  =# EXPLAIN SELECT * FROM french_messages2 
+  -# ORDER BY message COLLATE "fr_FR.utf8";
+                                             QUERY PLAN                                            
+   --------------------------------------------------------------------------------
+     Index Scan using idx_fr_ctype on french_messages2(cost=0.00..17139.15 rows=400000 width=8)

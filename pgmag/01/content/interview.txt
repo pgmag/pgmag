@@ -1,0 +1,138 @@
+''CATEGORY'': Interview
+
+''TITLE:'' The admin behind the scenes
+
+
+''HEADLINE:'' You probably don't know his name, even if you're a PostgreSQL zealot. But Stephan Kaltenbrunner (also known as "Mastermind") is a key member of the sysadmin team that builds and maintains the postgresql.org infrastructure. This tall and quiet Austrian guy has been involved in the web platform for years now, so we've decided to ask him about the evolution of the project through the last decade and the future of PostgreSQL's web presence: the new PGXN network, the death of pgFoundry and the recent upgrade of the front website....
+
+
+----
+
+''TEXT:'' 
+
+PostgreSQL Mag: Who do you work for?
+
+Stefan Kaltenbrunner: I work for Conova Communications GmbH in Salzburg, Austria as the team leader for the Engineering & Consulting department. Conova is a highly IT-Service company focusing on providing high-quality services out of its own large datacenter in Salzburg, and almost any internal or customer facing-project is running PostgreSQL in the backend.
+
+
+PGM: How are you involved in the PostgreSQL project?
+
+SK: Aside from occasionally giving talks, probably the most visible (or invisible depending on how you look at it) thing is my involvement in the postgresql.org sysadmin and web teams.
+PostgreSQL is a huge, well established and well respected open source project, and as part of being a real open source project we also run our own infrastructure, fully community managed and operated.
+
+
+PGM: Is it hard to be an admin of postgresql.org ? How many hours per week do you spend on this?
+ 
+SK: Heh, "how hard is it?" - that's a really good question. Back in the '90s postgresql.org used to run on a single FreeBSD server sponsored and operated by hub.org. This was later expanded to 3 or 4 servers but it was still a small environment that was adequate to the needs of the projects 10-15 years ago. 
+
+However over the past 5-10 years with PostgreSQL getting rapidly developed, improved and attracting a larger community - both in terms of developers, contributors and users - the postgresql.org infrastructure grew. The community got new servers sponsored by companies other than hub.org; still inheriting a lot of the FreeBSD past but it helped to get new people involved with the topic.
+
+Over the last few years the sysadmin team grew with even more serious server sponsors and a significant increase in what people wanted the infrastructure to deliver. We started working on a completely new concept for how we as a team could successfully design and run the postgresql.org infrastructure for the next 5-10 years, looking at new technologies and learning from past experience.
+
+The end result is, in my opinion, a nice reflection on the rapid evolution and the technical excellence of PostgreSQL itself. We now run almost all services using cutting edge, KVM-based full virtualisation technology and we also have a very sophisticated custom deployment and management framework that allows us to do most stuff in minutes. The system as a whole has a very high level of automation. Newly installed VMs or even services added to existing ones are fully functional and automatically backed up, and monitoring and patching for security issues is now a matter of seconds which makes managing our 40+ VMs as well as the VM-Hosts much easier and more sustainable.
+
+
+PGM: How many other sysadmins work on the infrastructure?
+
+SK: The "core infrastructure team" - rather loosely defined here as the people with root on all VMs and the VM-Hosts and actively working on them consists of four people: Magnus Hagander, Dave Page, Alvaro Herrera and me.
+
+However there are a larger number of people with elevated permissions on specific VMs, or with commit access to parts of the underlying code - a quick list of the people involved can be found on
+http://wiki.postgresql.org/wiki/Infrastructure_team. Work on the infrastructure is - similiar to most of the PostgreSQL ecosystem - coordinated through mailinglists, IRC and for emergencies IM.
+
+
+----
+
+SUB-HEAD : "At this moment we have exactly 571 services monitored in nagios on a total of 61 hosts"
+
+----
+
+PGM: How many services are running?
+
+SK:  It depends how one defines a service. Most of the publically facing services we provide which present the "face" of PostgreSQL, like the website, are actually composed of a number of different servers running dozens of services.
+Right at this moment we have exactly 571 services monitored in nagios on a total of 61 hosts not including all the stuff we have in place for long-term capacity planning and trending that is not directly alerting which adds another 250-350 services. It is important to mention that almost all of these are fully deployed automatically - so if somebody adds a PostgreSQL server instance on an existing box, monitoring and service checking will be fully automatically enabled.
+
+PGM: How many servers are used to run those services?
+
+SK: We try keeping an up-to-date list of physical servers on http://www.postgresql.org/about/servers/, so at the time of writing we had ten VM-Hosts in five different datacenters in the US and Europe.
+In addition to that we have a number of additional servers, not listed there on purpose, used for very specific tasks like running our monitoring system or our centralised backup system.
+
+
+PGM: Who donates these servers?
+
+SK: Companies using PostgreSQL or providing Services based on them basically. Years ago we had to rely on very few companies getting us gear they no longer needed. These days we actually evaluate the hardware we are getting offered seriously; we look at the kind of datacenter the server might be hosted at and what kind of support we can get from that place in terms of remote hands, response times and bandwidth as well as the hardware itself.
+In recent times we are also starting to look into buying hardware ourselves to provide an even better user experience and to improve the reliability of our services by having less dependency on somebody else to provide us with spare parts or a replacement in short time.
+
+
+PGM: How do you monitor this?
+
+SK: In two words: Nagios and Munin. In some more, We use Munin for trending, Nagios for alerting and monitoring externally through NRPE. We also have a custom-developed configuration file tracking system for keeping critical configuration files across the infrastructure properly version controlled. The alerting is usually happening through email directly to the individual sysadmin members.
+
+
+PGM: You seem to know nagios very well. How would you compare it to other
+monitoring software such as Zabbix or Hyperic?
+
+SK:  Indeed I know Nagios pretty well, though in recent times I have seen a lot of movement to look into Icinga, and also into using some of the alternative user interfaces provided by some projects.
+My personal favourite there is Thruk, which is maybe a bit boring for the Web 2.0 generation but for me it has the right balance of simplicity and clarity like the original Nagios CGI, while providing some very useful capabilities on top  - like very powerful filtering & view capabilities that are extremly handy in installations having a few thousand or tens of thousands of services.
+
+
+PGM: The sysadmin team performed an upgrade of the main www.postgresql.org
+platform in November 2011. Can you tell us a little more about that new version?
+
+SK:  That was a huge thing, the existing website framework was developed like 10 years ago by community members based on PHP4 that has now moved on to other things. And over the past few years we have only been making modest changes to it because people never did fully understand it, and the number of PHP-experienced developers within the community interested in hacking on it was, say, "limited".
+It is mostly thanks to Magnus Hagander - who implemented most of the new framework - that we now have a pretty nice and scalable Python and Django-based framework.  The new framework fully integrates Varnish as a front-end cache, Django in the backend and a myriad of what I would call "community platform services" like:
+
+  * complete community account management - providing single-sign-on for all community services
+  * management interfaces for news, organisations, events and trainings for the main website (including automatic purging of cached content on the frontend systems)
+  * RSS-feed generation and aggregation
+  * management of dynamic content like surveys
+  * scalability
+
+We also completely revamped our download system in the process, this now means that we are hosting all downloads, except for the one-click installers, by ourselves on servers operated by the infrastructure team. The old and often hated page, with the enourmous amount of flags for the many countries which we previously used mirrors, is now gone for good.
+
+----
+
+SUB-HEAD : "we have outgrown what pgFoundry can really do for us and I think we should move on"
+
+----
+
+
+PGM: One word about pgFoundry, the PostgreSQL software forge.... There's
+been some complaints about it. We see lots of projets moving to other
+code sharing platforms (such as github) and some community members even
+think pgFoundry should be closed. What's your opinion?
+
+SK: Once upon a time pgFoundry (and gborg for those who remember) were a very important service for the community. When those services were started, getting proper hosting was expensive and complex to get, especially for the myriad of smaller contributors in the PostgreSQL ecosystem. However, time has evolved, getting proper hosting is now reasonably easy to get in most places and there is a large set of very successful open source focused hosting systems. Contributors can choose from those that are very actively developed and improve at an amazing pace. The only real missing feature most people have with those is proper mailinglist support. The PostgreSQL community is using mailinglists as communication and coordination media in a much more intense form than other projects (except maybe the Linux kernel or the Debian project as a whole) but most of the code-sharing and hosting platforms have no or only very limited support for mailinglists. However we will be working with the projects affected by the upcoming pgFoundry shutdown on this and I expect that we will be finding a solution in most cases.
+
+To sum this up - pgFoundry was a very important part of the infrastructure in the past to help evolving and growing the community. However PostgreSQL is a very large and well established project with a rapidly growing community and we have now evolved to point where we have outgrown what pgfoundry can really do for us. And I think we should move on and work on stuff we are really good at - running the core and mission critical infrastructure for a major open source Project: PostgreSQL itself.
+
+
+
+PGM: And what do you think of the new PostgreSQL Extension Network (PGXN)?
+
+
+SK:  With my community hat on I see this as a great thing to provide a lot more exposure to the great ecosystem around PostgreSQL and also see it as a showcase of one of the most powerful, but often overlooked capabilities of PostgreSQL; "Extensibility". With my hat as a manager and team lead at Conova "on" I think that it is hard to deal with PGXN (or the concept it is loosely modeled around CPAN) in a complex production scenario usually requiring installation from binary packages or complex approval procedures for source code installations.
+PGXN is a clear and nice example of what the community is capable of pulling off these days, but as with a lot of services in the world wide web - only time will tell how successful it will be in the long run :)
+
+
+PGM: What's the biggest feature you'd want to see in the next PostgreSQL
+release?
+
+SK: There are three large features actually:
+
+  * scalability on large systems, thanks to a lot of work from Robert Haas, 9.2 will scale extremely well on modern boxes so for reads I consider this mostly done, for writes we still have ways to go
+  * better partitioning, the current system based on inheritence was nice to get us started and was sufficient for the time being, but going forward we probably need a radically new design embedded much deeper in the backend than what we have now
+  * parallel query - the industry as a whole is moving to more and more cores per socket at an amazing pace right now (to the point that commercial vendors need to update ther licencing on an almost yearly basis now), and we will have to take on the challenge of parallelising operations over multiple cores sooner rather than later
+
+PGM: What other things are you interested in outside of open source and
+PostgreSQL?
+
+SK: There is something other than open source and PostgreSQL?! No seriously, I like spending time with my family as well as going out for cinema or playing cards with friends and if that gets coupled with a good glass of Austrian white wine I'm even happier...
+
+
+----
+
+PICTURES:
+
+http://mha.smugmug.com/keyword/stefan%20kaltenbrunner/1/398627839_nAEBN#!i=398627839&k=nAEBN&lb=1&s=O
+
+http://mha.smugmug.com/keyword/stefan%20kaltenbrunner/1/398627839_nAEBN#!i=722847078&k=gmucU&lb=1&s=O

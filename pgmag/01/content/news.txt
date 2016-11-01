@@ -1,0 +1,97 @@
+''CATEGORY: News''
+
+''TITLE'' : Announcements
+
+''PICTURE'' : http://www.flickr.com/photos/wiccked/2382292252/sizes/l/in/photostream/
+
+
+
+----
+
+''NEWS TITLE'' : PostGIS 2.0 is out !
+
+''NEWS TEXT'' :  PostGIS, a project of the Open Geospatial Consortium, hit version 2.0 in April 2012. This PostgreSQL extension stores spatial data and allow users to search that data based on geographic criteria as well as on standard relational criteria.
+
+The development process for 2.0 has been very long, but has resulted in a release with a number of exciting new features, such as : Raster data and raster/vector analysis in the database, Topological models,3D and 4D indexing, Integration with the PostgreSQL extension system, Multi-file import support in the shapefile GUI, and more...
+
+''NEWS URL'' : http://www.postgis.org/
+
+----
+
+''NEWS TITLE'' : Skytools 3.0 
+
+''NEWS TEXT'' :  Skytools is a package of tools developed by Skype for replication and failover. It includes a generic queuing framework (PgQ) and easy-to-use replication implementation (Londiste). The major new features compared to 2.1 are : Cascaded queuing, Parallel copy, Multi-database ticker and a Londiste handler modules for custom processing.
+
+''NEWS URL'' : http://wiki.postgresql.org/wiki/SkyTools
+----
+
+''NEWS TITLE'' :  Postgres-XC 1.0beta1 released
+
+''NEWS TEXT'' : Postgres-XC is a write-scalable multi-master symetric cluster based on PostgreSQL. This beta version is based on PostgreSQL 9.1beta2 and all the fixes of PostgreSQL 9.1 stable branch will be backported in Postgres-XC 1.0 stabilized version. It is distributed under PostgreSQL license.
+
+''NEWS URL'' : http://postgres-xc.sourceforge.net/
+
+----
+
+''NEWS TITLE'' : EnterpriseDB launches Cloud Database
+
+''NEWS TEXT'' : EnterpriseDB announced the
+general availability of PostgreSQL 9.1 and Postgres Plus® Advanced Server
+9.0 on the Amazon Web Services platform.
+
+''NEWS URL'' : http://cloud.enterprisedb.com
+
+----
+
+''NEWS TITLE'' : PGXN Client 1.0
+
+''NEWS TEXT'' : The PGXN Client is a command line tool designed to interact with the PostgreSQL Extension Network allowing searching, compiling, installing, and removing extensions in a PostgreSQL installation or database.
+
+''NEWS URL'' : http://pgxnclient.projects.postgresql.org/
+
+----
+
+''NEWS TITLE'' : VMware Expands vFabric with PostgreSQL
+
+''NEWS TEXT'' : vFabric Postgres is a closed-source fork of PostgreSQL created by VMware, with significant improvements for the vSphere environment.  vFabric Postgres' "elastic database memory" dynamically adapts to changing workloads to achieve greater memory efficiency and higher consolidation ratios. vFabric Postgres is also available on cloudfoundry.com.
+
+----
+
+''NEWS TITLE'' :  PostgreSQL in Google Summer of Code
+
+''NEWS TEXT'' : Google has once again selected the PostgreSQL project to take part in Summer of Code 2012. Google will be funding several students to work with mentors from our project in order to hack PostgreSQL code for the summer. 
+
+''NEWS URL'' : http://www.postgresql.org/developer/summerofcode/
+
+
+----
+
+''NEWS TITLE'' : Scalr 2.5 supports PostgreSQL
+
+''NEWS TEXT'' : Open-source project Scalr is very pleased to announce its support for PostgreSQL. From now on, Scalr and PostgreSQL users can enjoy low maintenance on the cloud - including automatic backups, recoveries, and ease of administering, along with added auto-scaling.
+
+''NEWS URL'' : http://scalr.net/features/databases/postgres/
+
+----
+
+''NEWS TITLE'' : Heroku Launches PostgreSQL Standalone Service
+
+''NEWS TEXT'' : Since 2007, PostgreSQL is available as module inside  the Heroku Platform. But now Postgres is also available as a standalone service. Heroku is probably the world largest PostgreSQL hosting service with more than 150 000 PostgreSQL databases up and running. 
+
+''NEWS URL'' : https://postgres.heroku.com/
+
+----
+
+''NEWS TITLE'' : Npgsql 2.0.12 beta3 released
+
+''NEWS TEXT'' : Npgsql is a .Net Data provider written 100% in C# which allows .net programs to talk to postgresql backends. Npgsql is licensed under BSD.
+
+''NEWS URL'' : http://www.npgsql.org
+
+
+----
+
+''NEWS TITLE'' : Postgres Enterprise Manager v2.1
+
+''NEWS TEXT'' : EnterpriseDB released a new version of their management tool with SNMP and email alerts, an Audit Manager and user access controls.
+Postgres Enterprise Manager 2.1 (PEM) adds a series of highly configurable dashboards, new features for scheduling and organizing management tasks and enhanced alerting capabilities. 

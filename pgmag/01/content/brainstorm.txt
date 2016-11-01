@@ -1,0 +1,21 @@
+====== Brainstorm ======
+
+//What will we talk about in PostgreSQL Magazine #01 ?//
+
+
+Please edit this page and add any idea of article and (if possible) the number of pages of this article.
+
+
+__So far we have :__
+
+^ title ^nb of pages ^ source ^
+| News  | 2  |  PGWN   |
+| Events  | 2  |  PGWN   |
+| 12 new features of PostgreSQL 9.1 | 12 | http://wiki.postgresql.org/wiki/What%27s_new_in_PostgreSQL_9.1 |
+| "Elephant and Lion" : Apple shipping PostgreSQL with Mac OS X Lion | 1 | |
+| Interview of a hacker | 6 | Maybe Mastermind ?|
+| Skytools 3.0 | 4 | dimitri fontaine's blog ? |
+| Waiting for 9.2 : cascading streaming replication | 3 | http://www.depesz.com/index.php/2011/07/26/waiting-for-9-2-cascading-streaming-replication/|
+| Happy User  | 2 | Heroku ? http://pgconfeu11-service.herokuapp.com/#1 |
+| Tips & tricks | 2 | |
+| Opinion  | 2 | |

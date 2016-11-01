@@ -1,0 +1,108 @@
+''CATEGORY'': NoSQL ?
+
+''TITLE'' : The key value store everyone ignored
+
+
+''HEADER'' :
+
+Yes I know you are really happy with your “persistent” Key Value store. But did anybody notice hstore that comes with PostgreSQL ?
+
+-----------
+
+''TEXT'' :
+
+I find PostgreSQL to be a really great RDBMS that has is overlooked all the time. It even has a great publisher/subscriber system (or LISTEN/NOTIFY in terms of PostgreSQL) that a lot of people may have implemented using Redis, RabbitMQ etc. For people who have not lived anything other than MySQL, I would simply ask them to try out Postgres.
+
+Instead of looking at benchmarks, I will be focusing on a key value store that is ACID compliant for real! Postgres takes advantage of its storage engine and has an extension on top for key value storage. So the plan is to have a table with column(s) that have a datatype of hstore, which in turn has a structure-free storage. Thinking of this model multiple analogies throw themselves in. It can be a Column Family Store just like Cassandra where row key can be PK of the table, and each column of hstore type in the table can be thought of like a super column and each key in the hstore entry can be a column name. Similarly you can imagine it somewhat like Hash structures in Redis (HSET, HDEL) or 2 or 3 level MongoDB store (few modifications required). Despite being similar (when little tricks are applied) to your NoSQL store structures, this gives me an opportunity to demonstrate you some really trivial examples.
+
+----
+''PICTURE'' : 
+
+http://zeitgeist.li/asset/201112/zg.runk.jpeg
+----
+
+Let's setup our system first. For my experiment I will be using Postgres 9.1 and I will compile it from source. Once inside the source directory you can: ./configure && make install to install your Postgres. Don't forget to install the extensions in the contrib directory: cd ./contrib && make install. Once you have it set up, you can create your own database cluster and start the server (Hints: use initdb and pg_ctl). Then launch your psql and make sure you install your hstore extension:
+  
+  CREATE EXTENSION hstore;
+  SELECT 'foo=>bar'::hstore;
+
+If everything goes well you should be able to see table output. Now we are ready to do some DDL. I created a table named my_store as defined below:
+  
+  CREATE TABLE my_store
+  (
+  id character varying(1024) NOT NULL,
+  doc hstore,
+  CONSTRAINT my_store_pkey PRIMARY KEY (id)
+  )
+  WITH (
+  OIDS=FALSE
+  );
+  
+  CREATE INDEX my_store_doc_idx_gist
+  ON my_store
+  USING gist
+  (doc);
+
+As you can see I've created a table with a hstore column type and one GiST index (for operators ?, ?&, ?| etc.). You can check out the documentation to have a look at different type of operators available.
+Now that I have a database and tables set up I use a simple script to populate it with about 115K rows from a Twitter stream. Now keep in mind that it's real life data and I was interested in querying a few basic things from collected data. For example, how many people are using hash tags, or doing mentions, or were posting links in the tweets? For doing this I wrote a simple python script using tweepy and psycopg2 and ran it for about few hours. For each tweet in my store I added a key value pair of ‘has_hashtags=>:t’ if there were any hash tags in the tweet. Similarly I introduced has_urls and has_mentions if they were present in tweet. I will be using these keys along with my GiST index to query my table later on.
+
+
+----
+
+''SUBHEADER'' : "Combining the power of relational and key value style under one store"
+
+----
+
+So after populating my data with 115,142 tweets the database grew to a size of 239691780 bytes (Just 228MB). Now comes the fun part. I was totally blown away by what I can achieve by combining the power of relational and key value style under one store. So for example I want to query all the tweets tweeted at unix timestamp of 1323446095 (since I stored the timestamps as a string here is what my query looks like):
+  
+  SELECT doc -> 'text' as tweet, doc -> 'created_at' as created_at
+  FROM my_store 
+  WHERE doc @> 'created_at=>00001323446095';
+
+I can add a simple count or any other well-known SQL aggregate function without complicating my data store with anything specific like map reduce or the hassle of learning a new language. Note that I padded my timestamp value with zeros since I am only storing strings as values. Also I am utilizing the @> operator, and that's going to use GiST to perform a quick bitmap index scan instead of sequential scan. That's pretty good for starters. Let's try to fetch out all the tweets that had hash tags in them:
+  
+  SELECT doc -> 'text' as tweet, doc -> 'created_at' as created_at
+  FROM my_store 
+  WHERE doc @> 'has_hashtags=>:t';
+
+Yes querying the entire database and pulling out complete data (That you won't probably do because you page the data :) ) gives me 14689 rows in just under 360ms on average. Since we have SQL to hand let's make the query a little more complicated, and use a different operator for same stuff and also sort the data by created_at:
+  
+  SELECT doc -> 'text' as tweet, doc -> 'created_at' as created_at
+  FROM my_store 
+  WHERE doc @> 'has_hashtags=>:t' AND doc ? 'has_urls' 
+  ORDER BY doc -> 'created_at' DESC;
+
+This sounds tasty ! But there's more : Postgres has other operators. For example, you can also pull out hash tagged tweets with urls or mentions :
+
+  
+  SELECT doc -> 'text' as tweet, doc -> 'created_at' as created_at
+  FROM my_store 
+  WHERE doc @> 'has_hashtags=>:t' AND doc ?| ARRAY['has_urls', 'has_mentions']
+
+This is not all you can do with it! hstore comes with all sort of operators and index systems that you can use to query hash stores. Check them out in the documentation.  Now, despite the NoSQL boom I think we have some great examples and reasons of why RDBMS still remains a core part of many market giants (Facebook being something everyone knows). Postgres just gives me one more reason to not ignore RDBMS. So if you have been moving to some document stores just because the reason that RDBMS don't provide them; think again! You can get the same rock solid durability with structure-free systems.
+
+
+
+----
+''BOX 1'' : About the article 
+
+''BOX 1 TEXT'' :
+The original article is available at http://pgmag.org/0113
+
+
+----
+''BOX 2 TITLE'' : About the Author
+
+''BOX 2 TEXT'' :
+Zohaib Sibte Hassan (aka maxpert) is a contributor to DooPHP and creator of micro framework MiMViC. He works at Bumpin Social Media as Senior Software Engineer. He's been busting buzzwords on NoSQL, NodeJS, and various other stuff. Checkout his blog at http://blog.creapptives.com/
+
+''BOX 2 PICTURE'' : 
+
+{{:wiki:01:325387_10150436103607540_716032539_8956898_1368619540_o.jpg?linkonly|}}
+
+
+-------------------
+
+''BOX  TITLE'' : Note 
+
+''BOX  TEXT'' : Prior to PostgreSQL 8.2, the containment operators @> and <@ were called @ and ~, respectively. These names are still available, but are deprecated and will eventually be removed. Notice that the old names are reversed from the convention formerly followed by the core geometric data types! Please alse note that the => operator is deprecated and may be removed in a future release. Use the hstore(text, text) function instead.

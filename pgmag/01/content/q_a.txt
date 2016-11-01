@@ -1,0 +1,100 @@
+''CATEGORY'' : Q & A
+
+''TITLE'' : From Our Readers
+
+''HEADER'' : Corrections, ideas and requests: this section is the place for telling us what you think of each issue of PostgreSQL Magazine!
+
+''PICTURE'' : http://pgmag.org/_media/pgmag00.cover.jpeg
+
+-----
+
+
+''MESSAGE TITLE'' : What are your plans?
+
+''MESSAGE'' :
+
+Dear people from PostgreSQL Magazine,
+
+We (database people of the City of Vienna) have read (part of) the pilot
+issue and this magazine would be interesting for us.
+
+Do you have any ideas how often you plan to publish the magazine?
+Will it be possible to subscribe? Do you have any estimates how much
+it might cost?
+
+Even if you have no definite answers to any of the above yet, we thought
+it would be a good idea to give you feedback.
+
+Yours,
+Laurenz Albe
+
+''ANSWER'' : 
+
+The editors reply: For now we don't know how often we will publish and how much it will
+cost. It is not possible to subscribe to the magazine right now but we're working on this. All there questions are currently being discussed. Follow us on twitter or subscribe to our newsletter to stay tuned!
+
+http://twitter.com/#!/pg_mag\\
+http://pgmag.org/join_the_newsletter
+
+-----
+
+''MESSAGE TITLE'' : Online version not universally readable...
+
+''MESSAGE'' :
+... due to requiring some kind of proprietary plugin. How about
+limiting the delivery technology to some freely available formats?
+
+I will of course will download and read the PDF, but it does feel like
+I'm excluded. The only other online publication I pay money for is LWN,
+and I pay because of its *content*. In fact, given its technical
+audience its simplicity of design is probably an attraction.
+
+Perhaps I'm not part of the mainstream target audience? Aiming more at
+the corporate crowd who need flashy colors? Dunno...
+
+Regards,
+
+Mark Lawrence 
+
+
+''ANSWER'' : 
+
+The webmaster replies: I think you're talking about the online PDF reader that requires a flash plugin. I know this is a proprietary format but you should be able to read
+it with free alternatives to the Adobe plug-in...Have you tried gnash or
+lightspark ?
+
+Still the Flash format is not open. I know that too. For now, I don't know
+any way to display a magazine online with HTML5. I know scribd does it
+for slides but this is not appropriate for a magazine.
+
+If you have any idea on how we can improve that, I'm open to your suggestions.
+
+-----
+
+''MESSAGE TITLE'' : PostgreSQL magazine on tablets
+
+''MESSAGE'' :
+
+Hi,
+
+I am thrilled to see a magazine for PostgreSQL. I like the format and the open source experiment around the magazine. I found the announcement via the hacker news.  So I am sure the news about the publication will be viral very soon.   
+
+It would be great if the magazine is made available on the iPad too. I am sure there are others who would like to read on other ereaders like kindle or nook. I use iBooks, Flipboard, and Zinio to primarily read articles and magazines on the iPad. I especially love the flipboard interface to read articles on the iPad.
+
+I know that the PDF can be read on the iPad or other tablets. However, it’s a bit inconvenient, since I need to pull it manually. Having the magazine pushed to my device(s) would save me a lot of trouble. Pushing it to my device will also make it easy for me to access the magazine, especially when I am not particularly busy and want to catch up on my news and magazine reading.
+
+Thanks for the great work so far.
+
+John
+
+''ANSWER'' :
+
+The editors reply: Right now we're focusing on the paper version. We're happy to provide an online version but this is not our main goal. Behind the world "tablet", there are so many devices and formats! Releasing the magazine for each tablet would take us too long. This is why we're going to stick with the PDF format for a while. 
+
+
+----
+
+''BOX TITLE'' : Send us feedback !
+
+''BOX TEXT'' : Send your opinion about what your read in PostgreSQL Magazine to feedback@pgmag.org. Letters may be edited for length and clarity. We consider that any message we receive can be published.
+ 
