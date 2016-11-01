@@ -1,0 +1,286 @@
+%!Adobe-FontList 1.17
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Courier
+FamilyName:Courier
+StyleName:Regular
+MenuName:Courier
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Courier
+WritingScript:Roman
+OutlineFileName:\Courier.dfont
+DataFormat:sfntResource
+ResourceID:24011
+FileLength:1646421
+FileModTime:1445646730
+NameArray:0,Mac,4,Courier
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Courier-Bold
+FamilyName:Courier
+StyleName:Bold
+MenuName:Courier
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Courier Bold
+WritingScript:Roman
+OutlineFileName:\Courier.dfont
+DataFormat:sfntResource
+ResourceID:27224
+FileLength:1646421
+FileModTime:1445646730
+NameArray:0,Mac,4,Courier Bold
+NameArray:0,Mac,4,Courier Gras
+NameArray:0,Mac,4,Courier Fett
+NameArray:0,Mac,4,Courier grassetto
+NameArray:0,Mac,4,Courier vet
+NameArray:0,Mac,4,Courier Fet
+NameArray:0,Mac,4,Courier Negrita
+NameArray:0,Mac,4,Courier Carregado
+NameArray:0,Mac,4,Courier Halvfet
+NameArray:0,Mac,4,Courier lihava
+NameArray:4,Mac,4,Courier‭ ‬أسود
+NameArray:4,Mac,4,Courier‭ ‬برجسته
+NameArray:5,Mac,4,Courier‭ ‬עבה
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Courier-Oblique
+FamilyName:Courier
+StyleName:Oblique
+MenuName:Courier
+StyleBits:1
+WeightClass:400
+WidthClass:5
+AngleClass:1
+FullName:Courier Oblique
+WritingScript:Roman
+OutlineFileName:\Courier.dfont
+DataFormat:sfntResource
+ResourceID:12456
+FileLength:1646421
+FileModTime:1445646730
+NameArray:0,Mac,18,Courier Oblique
+NameArray:0,Mac,4,Courier Oblique
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Courier-BoldOblique
+FamilyName:Courier
+StyleName:Bold Oblique
+MenuName:Courier
+StyleBits:3
+WeightClass:700
+WidthClass:5
+AngleClass:1
+FullName:Courier Bold Oblique
+WritingScript:Roman
+OutlineFileName:\Courier.dfont
+DataFormat:sfntResource
+ResourceID:28062
+FileLength:1646421
+FileModTime:1445646730
+NameArray:0,Mac,18,Courier Bold Oblique
+NameArray:0,Mac,4,Courier Bold Oblique
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Suitcase
+FontName:Courier
+OutlineFileName:\Courier.dfont
+ResourceID:22
+MacStyle:0
+FileLength:1646421
+FileModTime:1445646730
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Suitcase
+FontName:Courier-Bold
+OutlineFileName:\Courier.dfont
+ResourceID:22
+MacStyle:1
+FileLength:1646421
+FileModTime:1445646730
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Suitcase
+FontName:Courier-Oblique
+OutlineFileName:\Courier.dfont
+ResourceID:22
+MacStyle:2
+FileLength:1646421
+FileModTime:1445646730
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Suitcase
+FontName:Courier-BoldOblique
+OutlineFileName:\Courier.dfont
+ResourceID:22
+MacStyle:3
+FileLength:1646421
+FileModTime:1445646730
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Junction-Bold
+FamilyName:Junction
+StyleName:Bold
+MenuName:Junction Bold
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Junction Bold
+WritingScript:Roman
+OutlineFileName:\Junction-bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:26868
+FileModTime:1396090378
+NameArray:0,Mac,4,Junction Bold
+NameArray:0,Win,1,Junction Bold
+NameArray:0,Win,16,Junction
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Junction-Light
+FamilyName:Junction
+StyleName:Light
+MenuName:Junction Light
+StyleBits:0
+WeightClass:300
+WidthClass:5
+AngleClass:0
+FullName:Junction Light
+WritingScript:Roman
+OutlineFileName:\Junction-light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:27756
+FileModTime:1396090378
+NameArray:0,Mac,4,Junction Light
+NameArray:0,Win,1,Junction Light
+NameArray:0,Win,16,Junction
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Junction-Regular
+FamilyName:Junction
+StyleName:Regular
+MenuName:Junction Regular
+StyleBits:0
+WeightClass:500
+WidthClass:5
+AngleClass:0
+FullName:Junction Regular
+WritingScript:Roman
+OutlineFileName:\Junction-regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:24980
+FileModTime:1396090378
+NameArray:0,Mac,4,Junction Regular
+NameArray:0,Win,1,Junction Regular
+NameArray:0,Win,16,Junction
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MerriweatherSans-Bold
+FamilyName:Merriweather Sans
+StyleName:Bold
+MenuName:Merriweather Sans
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Merriweather Sans Bold
+WritingScript:Roman
+OutlineFileName:\MerriweatherSans-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:38980
+FileModTime:1387447766
+NameArray:0,Mac,4,Merriweather Sans Bold
+NameArray:0,Win,1,Merriweather Sans
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MerriweatherSans-ExtraBold
+FamilyName:Merriweather Sans
+StyleName:ExtraBold
+MenuName:Merriweather Sans
+StyleBits:2
+WeightClass:800
+WidthClass:5
+AngleClass:0
+FullName:Merriweather Sans ExtraBold
+WritingScript:Roman
+OutlineFileName:\MerriweatherSans-ExtraBold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:38740
+FileModTime:1387447766
+NameArray:0,Mac,4,Merriweather Sans ExtraBold
+NameArray:0,Win,1,Merriweather Sans
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MerriweatherSans-Book
+FamilyName:Merriweather Sans
+StyleName:Book
+MenuName:Merriweather Sans
+StyleBits:0
+WeightClass:300
+WidthClass:5
+AngleClass:0
+FullName:Merriweather Sans Book
+WritingScript:Roman
+OutlineFileName:\MerriweatherSans-Light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:39608
+FileModTime:1387447766
+NameArray:0,Mac,4,Merriweather Sans Book
+NameArray:0,Win,1,Merriweather Sans
+%EndFont
+
