@@ -1,0 +1,44 @@
+
+''TITLE'' : Is it worth spending more money on more disks?
+
+''PICTURE'': https://www.flickr.com/photos/haroldhollingsworth/5280442042/sizes/l/
+
+''HEADER'' : 
+"Our database is slow. What if we just buy more disks? Is it going to fix things?". Every PostgreSQL database consultant in the world has heard this kind of question already more than once.  While more disks are surely a nice thing to have, it is not always economical to buy more hardware to fix problems...
+
+----
+
+''TEXT :'' 
+
+To answer the question whether additional disks make sense or not, it is important to extract statistics from the system. The best tool to do that is in my judgement pg_stat_statements, which is currently part of the PostgreSQL contrib module. It will give you deep insights into what is going on inside the server and what happens on the I/O side. In short: It is possible to measure “disk wait”. Therefore it is always a good idea to enable this module by default. The overhead is minimal, so it is definitely worth to add this extension to the server.
+
+''SUBTITLE :'' pg_stat_statements: Digging into details
+
+pg_stat_statements will install a new view describing how often a query was called, the total runtime of a certain type of query, caching behavior and so on. This view will contain 4 fields, which will be vital to our investigation: query, total_time, blk_read_time and blk_write_time. The ''blk_*'' fields will tell us, how much time a certain query has spent on reading and writing. We can then compare this to ''total_time'' to see, if I/O time is relevant or not. In case you got enough memory, data will reside in RAM anyway and so the disk might only be needed to store changes. There is one important aspect, which is often missed: blk_* is by default empty as PostgreSQL does not sum up I/O time by default due to potentially high overhead.
+
+''SUBTITLE :'' pg_test_timing: Measuring overhead
+
+To sum up I/O times, set track_io_timing to true in postgresql.conf. In this case pg_stat_statements will start to show the data you need. However, before you do that, consider running pg_test_timing to measure how much overhead there is:
+
+<code>
+iMac:~ hs$ pg_test_timing 
+Testing timing overhead for 3 seconds.
+Per loop time including overhead: 37.97 nsec
+</code>
+ 
+On my iMac the average overhead for a call is 37.97 nano seconds. On a good Intel server you can maybe reach 14-15 nsec. If you happen to run bad virtualization solutions this number can easily explode to 1400 or even 1900 nsec. 
+
+Buying more and better disks really only makes sense if you are able to detect a disk bottleneck using pg_stat_statements. However, before you do that: Try to figure out, if those queries causing the problems can actually be improved. More hardware is really just the last option.
+
+
+----
+
+''BOX 1 TITLE'' : About the Author
+
+''BOX 1 TEXT'' : Hans-Jürgen Schönig (@postgresql_007) has 15 years of experience with PostgreSQL. He is consultant and CEO of Cybertec Schönig & Schönig GmbH which has served countless customers around the globe.
+
+
+''BOX 1 PICTURE'' : https://pbs.twimg.com/profile_images/527700544/aug4_out_hans1_top_small_400x400.jpg
+
+Hans-Juergen Schoenig
+

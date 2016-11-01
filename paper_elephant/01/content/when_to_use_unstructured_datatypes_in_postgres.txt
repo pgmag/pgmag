@@ -1,0 +1,44 @@
+''TO DO'' : RESIZE under 5400 chars
+
+''TITLE'' : When to use unstructured datatypes in Postgres–Hstore vs. JSON vs. JSONB
+
+''AUTHOR'' : Craig Kersteins   
+
+''HEADER'' :  Since Postgres started supporting NoSQL (via hstore, json, and jsonb), the question of when to use Postgres in relational mode vs NoSQL mode has come up a lot. Do you entirely abandon traditional table structures, and go with documents all the way? Or do you intermingle both? The answer unsurprisingly is: it depends.... 
+
+''SUBTITLE'' : HSTORE
+
+If you exclude XML, this was the first truly unstructured datatype to arrive in Postgres. Hstore arrived way back in Postgres 8.3, before upsert, before streaming replication, and before window functions. Hstore is essentially a key/value store directly in Postgres. With hstore you’re a little more limited in terms of the datatypes you have: you essentially just get strings. You also don’t get any nesting; in short it’s a flat key/value datatype. Its obvious benefit is flexibility, but where it really shines is being able to leverage various index types. In particular, a GIN or GiST index will index every key and value within the hstore. This way when you filter on something it’ll use the index if it makes sense to the planner within Postgres.
+
+As hstore isn’t a full document equivalent, it’s a stretch to consider using it as such. If you have relational data as well as some data that may not always exist on a column: it can be a great fit. In the most basic case attributes of a product catalog can be a great candidate. In certain categories such as books you’d have things like whether it’s fiction or not; but in others such as clothes you might have things like size, and color. Having columns for every possible attribute for a product can at times very much be overkill.
+
+''SUBTITLE'' :  JSON
+
+When Postgres 9.2 arrived it was well received as the JSON release. Finally, Postgres can now complete against Mongo. (Although the JSON functionality in Postgres 9.2 was probably a little oversold.)
+
+The JSON datatype in Postgres is under the covers still largely just a text field. With the JSON datatype what you do get is validation on it as it comes in though. Postgres does enforce that it’s actually JSON. One small potential benefit of it over JSONB (which we’ll get to next) is that it preserves the indentation of the data coming in. So if you are extremely particular about the formatting of your JSON, or have some need for it in a particular structure, JSON can be useful.
+
+Furthermore, over time Postgres has picked up a number of niceties in the form of functions that can help. So, the question is: should you use JSON? At the end of the day, Postgres’ JSON type simply provides JSON validation on a text field. If you’re storing some form of log data you rarely need to query, JSON can work fine. Because it’s so simple, it will have a lot higher write throughput. For anything more complex, I’d recommend using JSONB, which is covered below.
+
+''SUBTITLE'' : JSONB
+
+Finally in Postgres 9.4 we got real and proper JSON in the form of JSONB. The B stands for better. JSONB is a binary representation of JSON, this means it’s compressed and more efficient for storage than just text. It also has a similar plumbing of hstore underneath. 
+
+JSONB is largely what you’d expect from a JSON datatype. It allows nested structures, use of basic datatypes, and has a number of built in functions for working with it. Though the best part similar to hstore is the indexing. Creating a GIN index on a JSONB column will create an index on every key and value within that JSON document. That with the ability to nest within the document means JSONB is the superior to hstore in most cases.
+
+That still leaves a bit of question of when to use only JSONB though. If you want a document database, instead of one of the other options out there you could go directly to Postgres. With a package like MassiveJS this can become quite seamless as well But even then, there are some clear examples where going more document heavy does make most sense.
+
+
+''SUBTITLE'' : In conclusion
+
+In most cases JSONB is likely what you want when looking for a NoSQL, schema-less, datatype. Hstore and JSON can have their place as well but it’s less common. More broadly, JSONB isn’t always a fit in every data model. Where you can normalize there are benefits, but if you do have a schema that has a large number of optional columns (such as with event data) or the schema differs based on tenant id then JSONB can be a great fit. Use JSON if you’re just processing logs, don’t often need to query, and use as more of an audit trail. Hstore can work fine for text based key-value looks, but in general JSONB can still work great here.
+
+
+
+''BOX 1 TITLE'' : About the Author
+
+''BOX 1 TEXT'' : 
+''BOX 1 TEXT'' : Craig Kersteins (@craigkerstiens) works at Citus Data in San Francisco. He curates "Postgres Weekly", a weekly email newsletter with Postgres content
+
+''BOX 1 PICTURE'' : http://f.cl.ly/items/0d0R410q0q3Z1g0n0P0a/541575_10151640210955132_1516824014_n.jpg
+

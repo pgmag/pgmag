@@ -1,0 +1,42 @@
+''SIZE'' : max. 2000 characters
+
+''TITLE'' : 3 Questions to Paul Ramsey
+
+''PICTURE'' : 
+     * https://dl.dropboxusercontent.com/u/1184727/pramsey/pramsey_pic.jpg
+
+
+''HEADER'' :  Paul Ramsey (@pwramsey) is a PostGIS core contributor and a general PostgreSQL enthusiast. He's lives in Canada and works at CARTO.
+
+''TEXT'' :
+
+Q: 
+For someone who not yet heard about PostGIS, and even about GIS,
+but who knows databases and PostgreSQL, 
+how could you describe briefly what PostGIS do ?
+ 
+A:
+PostGIS adds user defined types to PostgreSQL: geometry, geography, and raster. Geometry and geography are used to represent features in the world: point features, linear feature, area features. Raster is used to represent fields of values, for example a weather grid of temperatures or wind speeds.
+
+The types allow you to store location information alongside other information in tables. So an address table could include a geometry column with the addresses represented as points. And then queries can act on those columns, so finding all the addresses near by to a location is a simple spatial query.
+
+----------------------
+
+Q: Some people use or refer to motto in life. What's the one that makes sense for you ?
+
+A: It's pretty hard to beat the golden rule ("do unto others as you would have them do unto you") as a general philosophy of living. 
+But for my professional life I've also been drawn to a phrase that Tim O'Reilly uses to guide his business decisions: "create more value than you capture". He means that you should build things bigger than yourself and not begrudge other people getting value out of them, but neither should you shy away from getting some value. But the balance is clear: leave more for others than you take yourself. I think this works especially well for open source, since building value for others in a free piece of software has clearly also built value for myself, as a professional whose expertise is in that software.
+
+
+----------------------
+
+Q:
+What is your biggest hope/wish for PostGIS project ?
+
+A:
+I some ways, my big wish has already come true: PostGIS is spoken of in industry events as a reasonable option alongside products like Oracle and SQL Server and ArcSDE. Most third party GIS software supports PostGIS as a spatial database option. PostGIS has already arrived.
+
+The only way things could get better is if, on the technical side, PostgreSQL makes the leap from a single-threaded transactional server model, to a multi-threaded cloud server model. It is already taking steps in that direction, with new work on parallel processing, and ongoing improvements in replication. But the single most requested PostGIS feature I'm getting in my current work is horizontal scaling, and that is something that only the core PostgreSQL team can provide.
+
+-----------
+

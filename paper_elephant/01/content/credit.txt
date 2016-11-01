@@ -1,0 +1,18 @@
+''TITLE'' : About PG Mag
+
+PostgreSQL Magazine is an independent media edited by and for the PostgreSQL Community.
+
+General Editor: Damien Clochard
+
+Layout Editor : Damien Cazeils
+
+Writers: FIXME, FIXME, FIXME, FIXME, FIXME
+
+Reviewers: FIXME, FIXME, FIXME, FIXME, FIXME, FIXME, FIXME, FIXME, FIXME, FIXME
+
+License: Creative Commons Attribution-ShareAlike 3.0 
+
+Photos : p1 Allison Edwards / flickr / CC BY-NC-ND , 
+
+Disclaimer: The views and opinions in this media should in no way be assumed to be endorsed by the PostgreSQL Global Development Group. This magazine is provided with absolutely no warranty whatsoever; neither the contributors nor PostgreSQL Magazine accept any responsibility or liability for loss or damage resulting from readers choosing to apply this content to theirs or others computers and equipment.
+

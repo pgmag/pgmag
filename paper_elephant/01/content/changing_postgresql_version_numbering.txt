@@ -1,0 +1,45 @@
+''SIZE'' : max. 3000 characters
+
+''TITLE'' : Changing Postgres Version Number
+
+''PICTURE'' : 
+     * https://www.flickr.com/photos/k0rry/8216995942/sizes/o/
+     * https://www.flickr.com/photos/crobj/5558548657/sizes/o/
+
+''HEADER'' : The PostgreSQL Project has decided to switch to a new  version numbering policy.  
+
+''TEXT'' :
+
+
+First, let's explain how we do version numbers now.  Our current version number composition is:
+
+9 . 5 . 3  
+Major1 . Major2 . Minor
+
+
+That is, the second number is the "major version" number, reflecting our annual release.  The third number is the update release number, reflecting cumulative patch releases.  Therefore "9.5.3" is the third update to version 9.5.
+
+The problem with that first number is that we have no clear criteria when to advance it.  Historically, we've advanced it because of major milestones in feature development: crash-proofing for 7.0, Windows port for 8.0, and in-core replication for 9.0.  However, as PostgreSQL's feature set matures, it has become less and less clear on what milestones would be considered "first digit" releases.  The result is arguments about version numbering on the mailing lists every year which waste time and irritate contributors.
+
+As a result, the PostgreSQL Project has decided to change the version numbering to the following two-digit format:
+
+10 . 2
+Major . Minor
+
+Thus "10.2" would be the second update release for major version 10.   The version we release in 2017 will be "10" (instead of 10.0), and the version we release in 2018 will be "11".
+
+The "sortable" version number available from the server, libpq, and elsewhere would remain the same six digits, zero-filled in the middle.  So 10.2 will be 100002.
+
+The idea is that this will both put an end to the annual arguments, as well as ending the need to explain to users that 9.5 to 9.6 is really a major version upgrade requiring downtime. Obviously, there is potential for breakage of a lot of tools, scripts, automation, packaging and more in this.  So we're announcing this now, almost a year before 10 beta is due to come out.
+
+Version 9.6 uses the current three-digit version numbering scheme.
+
+
+----
+
+''BOX 1 TITLE'' : About the Author
+
+''BOX 1 TEXT'' : Josh Berkus (@fuzzychef) has been a member of the PostgreSQL Core Team since 2003. He's also the community lead for Project Atomic at Red Hat OSAS.
+
+
+''BOX 1 PICTURE'' : https://avatars1.githubusercontent.com/u/115146

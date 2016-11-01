@@ -1,0 +1,18 @@
+
+''TITLE :'' Happy Birthday PostgreSQL !
+
+''PICTURE :'' https://pbs.twimg.com/media/Cm7qIZQW8AAo_Yn.jpg
+
+''TEXT'' :
+
+Postgres was created in the eighties as a replacement of Ingres at the university of Berkeley, but for years it remained a research object without a significant user base. The real starting point of the project was in July 1996, when a small group of people created the first non-university development server for PostgreSQL, thus putting the cornerstone of the global collective effort we known call "postgres community". 
+
+Marc Fournier, Bruce Momjian and Vadim B. Mikheev among other pioneers saw the promise of the system, and devoted themselves to its continued development. Contributing enormous amounts of time, skill, labor, and technical expertise, this global development group radically transformed Postgres. During the early years, they brought consistency, improved stability, set up mailing lists for bug reports, wrote documentation, etc. 
+
+Two decades later, PostgreSQL is now an iconic open source project, along with Linux (also celebrating its 25th anniversary this year). A database software that it as the same time  robust, standard compliant and constantly evolving.  A complex alchemy of innovation and stability...
+
+So How did PostgreSQL manage to become the main alternative to Oracle, while other companies like IBM or Microsoft were also in the competition ? Oracle employs approx. 37,000  engineers around the world, while  PostgreSQL relies on tiny core team of 6 developpers surrounded by hundreds of contributors. A true David vs. Gotliath story ! That's because the power of PostgreSQL is the user base itself. Open source is all about erasing the frontier between producers and consummers and the PostgreSQL community is a great example. Everyday and everywhere, thousands of users are testing beta versions, translating documentation, organizing meetups, answering questions on forums or simply promoting PostgreSQL at their workplace.... A swarm of passionate happy users working both individually and collectively to build the best database ever.
+
+Looking back at 1996, the key to success was not in the code. It's the vision of the pioneers who almost instantly had the intuition that this code had to be shared,maintained and developped by an open, transparent and decentralized community. So happy birthday to PostgreSQL and kudos to the founders of this great human adventure !
+
+Damien Clochard

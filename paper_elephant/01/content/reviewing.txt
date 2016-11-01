@@ -1,0 +1,45 @@
+====== Reviewing ======
+
+
+
+
+page 1 :
+
+----
+
+page 2 : [[editorial]] + [[credit]]
+
+Reviewed by :
+  * 
+
+----
+
+page 3 : [[PostgreSQL 9.6]]
+
+Reviewed by :
+  * 
+
+----
+
+page 4 : [[Changing PostgreSQL Version Numbering]]
+
+Reviewed by :
+  * 
+
+----
+page 5 : [[Is it worth spending more money on disk ?]]
+
+Reviewed by :
+  * 
+
+----
+page 6-7 : [[When to use unstructured datatypes in Postgres]]
+
+Reviewed by :
+  * 
+
+----
+page 8 : [[3 Questions to]]
+
+Reviewed by :
+  * 

@@ -1,0 +1,14 @@
+====== Gathering Content ======
+
+The magazine iscomposed of 8 A5 pages, with approx 1000-1200 characters per page.
+
+  - First Page / Cover
+  - Table of Content / Editorial /  Credits
+  - PostgreSQL 20th Anniversary
+  - [[Changing PostgreSQL Version Numbering
+|http://www.databasesoup.com/2016/05/changing-postgresql-version-numbering.html]]
+  - 9.6 New Feature : Paralellism ?
+  - [[https://www.citusdata.com/blog/2016/07/14/choosing-nosql-hstore-json-jsonb/|When to use unstructured datatypes in Postgres–Hstore vs. JSON vs. JSONB]]
+  -  [[https://www.citusdata.com/blog/2016/07/14/choosing-nosql-hstore-json-jsonb/|When to use unstructured datatypes in Postgres–Hstore vs. JSON vs. JSONB]]
+  - Interview : Paul Ramsey / PostGIS
+
